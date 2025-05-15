@@ -1,0 +1,8 @@
+.imgpost{
+    max-width: 50%;
+    margin: 20px 0px 20px 20px;
+    float: right;
+    padding: 20px 0px 20px 20px;
+    border-left: 3px solid #844b97;
+    border-bottom: 0px solid #844b97;
+  }

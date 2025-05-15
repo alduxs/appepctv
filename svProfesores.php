@@ -1,0 +1,61 @@
+<?PHP
+include_once("includes/checkLogin.inc.php");
+include_once('includes/conexion.inc.php');
+include_once('includes/funciones.inc.php');
+$link = Conectarse();
+include_once('includes/class.inc.php');
+//
+include("includes/class.upload.php");
+//
+$strOperacion = sanStrHtmlSpecial($_POST["strOperacion"]);
+//
+switch ($strOperacion) {
+    case 'I':
+        //
+      
+        $arrData[0] = '';
+        $arrData[1] = sanStrHtml($_POST["nombre"]);
+        $arrData[2] = sanStrHtml($_POST["apellido"]);
+        $arrData[3] = sanStrHtml($_POST["dni"]);
+        $arrData[4] = sanStrHtml($_POST["celular"]);
+        $arrData[5] = sanStrHtml($_POST["email"]);
+        //
+
+        $Insert_row = new General();
+        $query = "INSERT INTO data_profesores (profesores_name,profesores_apellido,profesores_dni,profesores_celular,profesores_email) VALUES (?,?,?,?,?)";
+        $intIdRegistro = $Insert_row->insertContenido($link, $arrData, $query);
+        
+        break;
+
+    case 'U':
+        //
+        $arrData[0] = sanInt($_POST["id"]);
+    
+        $arrData[1] = sanStrHtml($_POST["nombre"]);
+        $arrData[2] = sanStrHtml($_POST["apellido"]);
+        $arrData[3] = sanStrHtml($_POST["dni"]);
+        $arrData[4] = sanStrHtml($_POST["celular"]);
+        $arrData[5] = sanStrHtml($_POST["email"]);
+        //
+        $Update_row = new General();
+        $query = "UPDATE data_profesores SET profesores_name = ?,profesores_apellido = ?,profesores_dni = ?,profesores_celular = ?,profesores_email = ? WHERE profesores_id = ?";
+        $intIdRegistro = $Update_row->updateContenido($link, $arrData, $query);
+
+        break;
+
+
+    case 'D':
+        //Recibo variables
+        $arrData[0] = sanInt($_POST["intIdRegistro"]);
+        $arrData[1] = sanStrHtmlSpecial($_POST["strDb"]);
+       
+        // Borro el registro de la DB
+        $objRegistro = new ComonClases();
+        $rsRegistro = $objRegistro->deleteRegistro($link, $arrData);
+        //
+        
+        //
+        break;
+}
+//
+header("Location: lstProfesores.php?seccion=profesores");
