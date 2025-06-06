@@ -13,7 +13,7 @@ $objContenido = new General();
 $query = "SELECT * FROM pedidos_equipos_temp";
 $rsCont = $objContenido->getAllContenido($link, $query);
 $intQtyRecords = $rsCont->rowCount();
-if($intQtyRecords > 0){
+if ($intQtyRecords > 0) {
     $queryClean = "TRUNCATE TABLE pedidos_equipos_temp";
     $rsContClean = $objContenido->getAllContenido($link, $queryClean);
 }
@@ -265,10 +265,12 @@ if($intQtyRecords > 0){
                                         <div class="form-group col-xs-6" id="data_1">
                                             <label>Fecha Retiro</label>
                                             <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="" name="fechain" id="fechain">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" value="" name="fechain" id="fechain" autocomplete="off">
                                             </div>
                                         </div>
 
+                                        <!--
                                         <div class="form-group col-xs-6">
                                             <label>Hora Retiro</label>
                                             <div class="input-group clockpicker" data-autoclose="true">
@@ -278,6 +280,83 @@ if($intQtyRecords > 0){
                                                 </span>
                                             </div>
                                         </div>
+                                        -->
+
+                                        <div class="form-group col-xs-6">
+                                            <label>Hora Retiro</label>
+                                            <select name="horain" id="horain" class="form-control">
+                                                <option value="" selected>Seleccionar hora de retiro</option>
+                                                <option value="0700">07:00</option>
+                                                <option value="0715">07:15</option>
+                                                <option value="0730">07:30</option>
+                                                <option value="0745">07:45</option>
+                                                <option value="0800">08:00</option>
+                                                <option value="0815">08:15</option>
+                                                <option value="0830">08:30</option>
+                                                <option value="0845">08:45</option>
+                                                <option value="0900">09:00</option>
+                                                <option value="0915">09:15</option>
+                                                <option value="0930">09:30</option>
+                                                <option value="0945">09:45</option>
+                                                <option value="1000">10:00</option>
+                                                <option value="1015">10:15</option>
+                                                <option value="1030">10:30</option>
+                                                <option value="1045">10:45</option>
+                                                <option value="1100">11:00</option>
+                                                <option value="1115">11:15</option>
+                                                <option value="1130">11:30</option>
+                                                <option value="1145">11:45</option>
+                                                <option value="1200">12:00</option>
+                                                <option value="1215">12:15</option>
+                                                <option value="1230">12:30</option>
+                                                <option value="1245">12:45</option>
+                                                <option value="1300">13:00</option>
+                                                <option value="1315">13:15</option>
+                                                <option value="1330">13:30</option>
+                                                <option value="1345">13:45</option>
+                                                <option value="1400">14:00</option>
+                                                <option value="1415">14:15</option>
+                                                <option value="1430">14:30</option>
+                                                <option value="1445">14:45</option>
+                                                <option value="1500">15:00</option>
+                                                <option value="1515">15:15</option>
+                                                <option value="1530">15:30</option>
+                                                <option value="1545">15:45</option>
+                                                <option value="1600">16:00</option>
+                                                <option value="1615">16:15</option>
+                                                <option value="1630">16:30</option>
+                                                <option value="1645">16:45</option>
+                                                <option value="1700">17:00</option>
+                                                <option value="1715">17:15</option>
+                                                <option value="1730">17:30</option>
+                                                <option value="1745">17:45</option>
+                                                <option value="1800">18:00</option>
+                                                <option value="1815">18:15</option>
+                                                <option value="1830">18:30</option>
+                                                <option value="1845">18:45</option>
+                                                <option value="1900">19:00</option>
+                                                <option value="1915">19:15</option>
+                                                <option value="1930">19:30</option>
+                                                <option value="1945">19:45</option>
+                                                <option value="2000">20:00</option>
+                                                <option value="2015">20:15</option>
+                                                <option value="2030">20:30</option>
+                                                <option value="2045">20:45</option>
+                                                <option value="2100">21:00</option>
+                                                <option value="2115">21:15</option>
+                                                <option value="2130">21:30</option>
+                                                <option value="2145">21:45</option>
+                                                <option value="2200">22:00</option>
+                                                <option value="2215">22:15</option>
+                                                <option value="2230">22:30</option>
+                                                <option value="2245">22:45</option>
+                                                <option value="2300">23:00</option>
+                                                <option value="2315">23:15</option>
+                                                <option value="2330">23:30</option>
+                                                <option value="2345">23:45</option>
+                                                <option value="0000">00:00</option>
+                                            </select>
+                                        </div>
 
                                         <div class="hr-line-dashed col-xs-12"></div>
 
@@ -285,10 +364,12 @@ if($intQtyRecords > 0){
                                         <div class="form-group col-xs-6" id="data_2">
                                             <label>Fecha Devolucion</label>
                                             <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="" name="fechaout" id="fechaout">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" value="" name="fechaout" id="fechaout" autocomplete="off">
                                             </div>
                                         </div>
 
+                                        <!--
                                         <div class="form-group col-xs-6">
                                             <label>Hora Devolucion</label>
                                             <div class="input-group clockpicker" data-autoclose="true">
@@ -297,6 +378,82 @@ if($intQtyRecords > 0){
                                                     <span class="fa fa-clock-o"></span>
                                                 </span>
                                             </div>
+                                        </div>
+                                        -->
+                                        <div class="form-group col-xs-6">
+                                            <label>Hora Devolucion</label>
+                                            <select name="horaout" id="horaout" class="form-control">
+                                                <option value="" selected>Seleccionar hora de devolución</option>
+                                                <option value="0700">07:00</option>
+                                                <option value="0715">07:15</option>
+                                                <option value="0730">07:30</option>
+                                                <option value="0745">07:45</option>
+                                                <option value="0800">08:00</option>
+                                                <option value="0815">08:15</option>
+                                                <option value="0830">08:30</option>
+                                                <option value="0845">08:45</option>
+                                                <option value="0900">09:00</option>
+                                                <option value="0915">09:15</option>
+                                                <option value="0930">09:30</option>
+                                                <option value="0945">09:45</option>
+                                                <option value="1000">10:00</option>
+                                                <option value="1015">10:15</option>
+                                                <option value="1030">10:30</option>
+                                                <option value="1045">10:45</option>
+                                                <option value="1100">11:00</option>
+                                                <option value="1115">11:15</option>
+                                                <option value="1130">11:30</option>
+                                                <option value="1145">11:45</option>
+                                                <option value="1200">12:00</option>
+                                                <option value="1215">12:15</option>
+                                                <option value="1230">12:30</option>
+                                                <option value="1245">12:45</option>
+                                                <option value="1300">13:00</option>
+                                                <option value="1315">13:15</option>
+                                                <option value="1330">13:30</option>
+                                                <option value="1345">13:45</option>
+                                                <option value="1400">14:00</option>
+                                                <option value="1415">14:15</option>
+                                                <option value="1430">14:30</option>
+                                                <option value="1445">14:45</option>
+                                                <option value="1500">15:00</option>
+                                                <option value="1515">15:15</option>
+                                                <option value="1530">15:30</option>
+                                                <option value="1545">15:45</option>
+                                                <option value="1600">16:00</option>
+                                                <option value="1615">16:15</option>
+                                                <option value="1630">16:30</option>
+                                                <option value="1645">16:45</option>
+                                                <option value="1700">17:00</option>
+                                                <option value="1715">17:15</option>
+                                                <option value="1730">17:30</option>
+                                                <option value="1745">17:45</option>
+                                                <option value="1800">18:00</option>
+                                                <option value="1815">18:15</option>
+                                                <option value="1830">18:30</option>
+                                                <option value="1845">18:45</option>
+                                                <option value="1900">19:00</option>
+                                                <option value="1915">19:15</option>
+                                                <option value="1930">19:30</option>
+                                                <option value="1945">19:45</option>
+                                                <option value="2000">20:00</option>
+                                                <option value="2015">20:15</option>
+                                                <option value="2030">20:30</option>
+                                                <option value="2045">20:45</option>
+                                                <option value="2100">21:00</option>
+                                                <option value="2115">21:15</option>
+                                                <option value="2130">21:30</option>
+                                                <option value="2145">21:45</option>
+                                                <option value="2200">22:00</option>
+                                                <option value="2215">22:15</option>
+                                                <option value="2230">22:30</option>
+                                                <option value="2245">22:45</option>
+                                                <option value="2300">23:00</option>
+                                                <option value="2315">23:15</option>
+                                                <option value="2330">23:30</option>
+                                                <option value="2345">23:45</option>
+                                                <option value="0000">00:00</option>
+                                            </select>
                                         </div>
 
                                         <div class="hr-line-dashed col-xs-12"></div>
@@ -320,7 +477,7 @@ if($intQtyRecords > 0){
 
                                         <div class="form-group col-xs-12 text-center">
                                             <!--<input name="agregar" type="submit" class="btn btn-primary" id="agregar" value="Enviar">-->
-                                            <button name="agregar" class="btn btn-primary" id="agregar" type="button">Enviar</button>
+                                            <button name="agregar" class="btn btn-primary" id="agregar" type="submit">Enviar</button>
                                         </div>
 
                                     </div>
@@ -412,7 +569,39 @@ if($intQtyRecords > 0){
             </div>
         </div>
     </div>
+    <!-- MODAL VACIO -->
+    <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>La hora y fecha no pueden estar vacias</p>
+                </div>
 
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalError2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>La hora y fecha de salida no pueden ser menor o igual a la fecha de salida</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL VACIO -->
 
     <div class="modal fade" id="modalcheck" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -451,6 +640,7 @@ if($intQtyRecords > 0){
 
     <!-- Data picker -->
     <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="js/plugins/datapicker/locales/bootstrap-datepicker.es.min.js"></script>
     <!-- Clock picker -->
     <script src="js/plugins/clockpicker/clockpicker.js"></script>
 
@@ -500,7 +690,8 @@ if($intQtyRecords > 0){
                 autoclose: true,
                 startDate: stardaten + " 00:00 AM",
                 todayBtn: "linked",
-                todayHighlight: true
+                todayHighlight: true,
+                language: "es"
             });
 
             $('#data_2 .input-group.date').datepicker({
@@ -508,7 +699,8 @@ if($intQtyRecords > 0){
                 autoclose: true,
                 //startDate:  stardaten+" 00:00 AM",
                 todayBtn: "linked",
-                todayHighlight: true
+                todayHighlight: true,
+                language: "es"
             });
 
             $("#fechain").change(function() {
@@ -540,12 +732,38 @@ if($intQtyRecords > 0){
         /* Fin pestañas */
 
         $('#agregarmod').click(function() {
-            $("#clasef").val('0');
 
-            $("#subclase").html('<option value=""></option>');
+            var fechain = $("#fechain").val();
+            var fechaout = $("#fechaout").val();
+            var horain = $('#horain option:selected').val();
+            var horaout = $('#horaout option:selected').val();
 
-            $("#equiposdisponibles").html("");
-            $('#modal').modal('show');
+            var arrayfechain = fechain.split("/");
+            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+
+            var arrayfechaout = fechaout.split("/");
+            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+
+            var horainfin = horain;
+
+            var horaoutfin = horaout;
+
+            var fechasalida = fechainfin + horainfin;
+            var fecharegreso = fechaoutfin + horaoutfin;
+
+            if (fechain == "" || fechaout == "" || horain == "" || horaout == "") {
+                $('#modalError').modal('show');
+            } else if(fechasalida >= fecharegreso){ 
+                $('#modalError2').modal('show');
+            } else {
+                $("#clasef").val('0');
+
+                $("#subclase").html('<option value=""></option>');
+
+                $("#equiposdisponibles").html("");
+                $('#modal').modal('show');
+            }
+            
         });
 
         function addarMod(id, nombre) {
@@ -553,8 +771,10 @@ if($intQtyRecords > 0){
 
             var fechain = $("#fechain").val();
             var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
+            //var horain = $("#horain").val();
+            var horain = $('#horain option:selected').val();
+            //var horaout = $("#horaout").val();
+            var horaout = $('#horaout option:selected').val();
 
             var idtemporal = $("#idtemporal").val();
 
@@ -564,11 +784,9 @@ if($intQtyRecords > 0){
             var arrayfechaout = fechaout.split("/");
             var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
 
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
+            var horainfin = horain;
 
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
+            var horaoutfin = horaout;
 
             var fechasalida = fechainfin + horainfin;
             var fecharegreso = fechaoutfin + horaoutfin;
@@ -586,7 +804,7 @@ if($intQtyRecords > 0){
                     }
                 })
                 .done(function(data) {
-                    
+
                     /*$("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
                     var cont = "<div class=\"claseequipo\" id=\"" + id + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + id + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";*/
 
@@ -646,8 +864,10 @@ if($intQtyRecords > 0){
             var idSubClase = $(this).val();
             var fechain = $("#fechain").val();
             var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
+            /*var horain = $("#horain").val();
+            var horaout = $("#horaout").val();*/
+            var horain = $('#horain option:selected').val();
+            var horaout = $('#horaout option:selected').val();
             var idTemp = $("#idtemporal").val();
 
             $("#equiposdisponibles").html("");
@@ -658,11 +878,8 @@ if($intQtyRecords > 0){
             var arrayfechaout = fechaout.split("/");
             var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
 
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
-
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
+            var horainfin = horain;
+            var horaoutfin = horaout;
 
             var fechasalida = fechainfin + horainfin;
             var fecharegreso = fechaoutfin + horaoutfin;
@@ -683,7 +900,7 @@ if($intQtyRecords > 0){
                 })
                 .done(function(data) {
                     //$("#subclase").html(data);
-                    
+
                     $("#equiposdisponibles").append(data);
                 });
         });
@@ -705,124 +922,96 @@ if($intQtyRecords > 0){
             $(selector).chosen(config[selector]);
         }
 
-        $("#agregar").click(function() {
 
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
-            var idTemp = $("#idtemporal").val();
+        $("#form1").validate({
+            rules: {
+                nombre: "required",
+                materia: "required",
+                docente: "required",
+                //responsable: "required",
+                curso: "required",
+                //comision: "required",
+                fechain: "required",
+                horain: "required",
+                fechaout: "required",
+                horaout: "required"
 
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+            },
+            messages: {
+                nombre: "Campo obligatorio",
+                materia: "Campo obligatorio",
+                docente: "Campo obligatorio",
+                //responsable: "Campo obligatorio",
+                curso: "Campo obligatorio",
+                //comision: "Campo obligatorio",
+                fechain: "Campo obligatorio",
+                horain: "Campo obligatorio",
+                fechaout: "Campo obligatorio",
+                horaout: "Campo obligatorio"
+            },
+            submitHandler: function(form) {
+                var fechain = $("#fechain").val();
+                var fechaout = $("#fechaout").val();
+                /*var horain = $("#horain").val();
+                var horaout = $("#horaout").val();*/
+                var horain = $('#horain option:selected').val();
+                var horaout = $('#horaout option:selected').val();
+                var idTemp = $("#idtemporal").val();
 
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+                var arrayfechain = fechain.split("/");
+                var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
 
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
+                var arrayfechaout = fechaout.split("/");
+                var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
 
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
+                /*var arrayhorain = horain.split(":");
+                var horainfin = arrayhorain[0] + arrayhorain[1];
 
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
+                var arrayhoraout = horaout.split(":");
+                var horaoutfin = arrayhoraout[0] + arrayhoraout[1];*/
 
-            $.ajax({
-                    method: "POST",
-                    url: "validarCantEquipos.php",
-                    dataType: "json",
-                    data: {
-                        idTemp: idTemp
-                    }
-                })
-                .done(function(data) {
-                    if (data.estado == 0) {
-                        $("#alert").html("Tiene que agregar equipos al pedido.").removeClass("dangerstyle").addClass("dangerstyleview");
-                    } else {
-                        $.ajax({
-                                method: "POST",
-                                url: "validarInsert.php",
-                                dataType: "json",
-                                data: {
-                                    fechasalida: fechasalida,
-                                    fecharegreso: fecharegreso,
-                                    idTemp: idTemp
-                                }
-                            })
-                            .done(function(data) {
-                                if (data.estado == 1) {
-                                    $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
-                                } else {
-                                    document.getElementById("form1").submit();
-                                }
+                var horainfin = horain;
+                var horaoutfin = horaout;
 
-                            });
-                    }
+                var fechasalida = fechainfin + horainfin;
+                var fecharegreso = fechaoutfin + horaoutfin;
 
-                });
-
-
-
-
-        });
-
-        /*
-                $("#form1").validate({
-                    rules: {
-                        nombre: "required",
-                        materia: "required",
-                        docente: "required",
-                        responsable: "required",
-                        curso: "required",
-                        comision: "required",
-                        fechain: "required",
-                        horain: "required",
-                        fechaout: "required",
-                        horaout: "required"
-
-                    },
-                    messages: {
-                        nombre: "Campo obligatorio",
-                        materia: "Campo obligatorio",
-                        docente: "Campo obligatorio",
-                        responsable: "Campo obligatorio",
-                        curso: "Campo obligatorio",
-                        comision: "Campo obligatorio",
-                        fechain: "Campo obligatorio",
-                        horain: "Campo obligatorio",
-                        fechaout: "Campo obligatorio",
-                        horaout: "Campo obligatorio"
-                    },
-                    submitHandler: function(form) {
-                        //form.submit();
-                        $.ajax({
-                                method: "POST",
-                                url: "validarInsert.php",
-                                data: {
-                                    idtemporal: idtemporal,
-                                    fechasalida: fechasalida,
-                                    fecharegreso: fecharegreso
-                                }
-                            })
-                            .done(function(data) {
-                                console.log(data);
-                                //form.submit();
-                            });
-                        /*var integrantes = $("#integrantes").val();
-                        if (integrantes.length == 0) {
-                            $("#integrantes-error").show().html("Campo obligatorio");
+                $.ajax({
+                        method: "POST",
+                        url: "validarCantEquipos.php",
+                        dataType: "json",
+                        data: {
+                            idTemp: idTemp
+                        }
+                    })
+                    .done(function(data) {
+                        if (data.estado == 0) {
+                            $("#alert").html("Tiene que agregar equipos al pedido.").removeClass("dangerstyle").addClass("dangerstyleview");
                         } else {
-                            $("#integrantes-error").hide();
-                            
+                            $.ajax({
+                                    method: "POST",
+                                    url: "validarInsert.php",
+                                    dataType: "json",
+                                    data: {
+                                        fechasalida: fechasalida,
+                                        fecharegreso: fecharegreso,
+                                        idTemp: idTemp
+                                    }
+                                })
+                                .done(function(data) {
+                                    if (data.estado == 1) {
+                                        $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
+                                    } else {
+                                        document.getElementById("form1").submit();
+                                    }
 
-
-                            
-                            
+                                });
                         }
 
-                    }
-                });*/
+                    });
+
+            }
+        });
     </script>
 
 

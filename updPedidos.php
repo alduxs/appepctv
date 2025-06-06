@@ -373,11 +373,12 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                         <div class="form-group col-xs-6" id="data_1">
                                             <label>Fecha Retiro</label>
                                             <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="<?php echo revertFecha($arrCont["pedidos_fechain"]); ?>" name="fechain" id="fechain">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" value="<?php echo revertFecha($arrCont["pedidos_fechain"]); ?>" name="fechain" id="fechain" autocomplete="off">
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-xs-6">
+                                        <!--<div class="form-group col-xs-6">
                                             <label>Hora Retiro</label>
                                             <div class="input-group clockpicker" data-autoclose="true">
                                                 <input type="text" class="form-control" name="horain" value="<?php echo revertHora($arrCont["pedidos_fechain"]); ?>" id="horain">
@@ -385,6 +386,83 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                                     <span class="fa fa-clock-o"></span>
                                                 </span>
                                             </div>
+                                        </div>-->
+
+                                        <div class="form-group col-xs-6">
+                                            <label>Hora Retiro</label>
+                                            <select name="horain" id="horain" class="form-control">
+                                                <option value="" selected>Seleccionar hora de retiro</option>
+                                                <option value="0700" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0700"){ ?> selected <?php } ?>>07:00</option>
+                                                <option value="0715" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0715"){ ?> selected <?php } ?>>07:15</option>
+                                                <option value="0730" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0730"){ ?> selected <?php } ?>>07:30</option>
+                                                <option value="0745" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0745"){ ?> selected <?php } ?>>07:45</option>
+                                                <option value="0800" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0800"){ ?> selected <?php } ?>>08:00</option>
+                                                <option value="0815" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0815"){ ?> selected <?php } ?>>08:15</option>
+                                                <option value="0830" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0830"){ ?> selected <?php } ?>>08:30</option>
+                                                <option value="0845" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0845"){ ?> selected <?php } ?>>08:45</option>
+                                                <option value="0900" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0900"){ ?> selected <?php } ?>>09:00</option>
+                                                <option value="0915" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0915"){ ?> selected <?php } ?>>09:15</option>
+                                                <option value="0930" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0930"){ ?> selected <?php } ?>>09:30</option>
+                                                <option value="0945" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0945"){ ?> selected <?php } ?>>09:45</option>
+                                                <option value="1000" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1000"){ ?> selected <?php } ?>>10:00</option>
+                                                <option value="1015" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1015"){ ?> selected <?php } ?>>10:15</option>
+                                                <option value="1030" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1030"){ ?> selected <?php } ?>>10:30</option>
+                                                <option value="1045" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1045"){ ?> selected <?php } ?>>10:45</option>
+                                                <option value="1100" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1100"){ ?> selected <?php } ?>>11:00</option>
+                                                <option value="1115" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1115"){ ?> selected <?php } ?>>11:15</option>
+                                                <option value="1130" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1130"){ ?> selected <?php } ?>>11:30</option>
+                                                <option value="1145" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1145"){ ?> selected <?php } ?>>11:45</option>
+                                                <option value="1200" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1200"){ ?> selected <?php } ?>>12:00</option>
+                                                <option value="1215" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1215"){ ?> selected <?php } ?>>12:15</option>
+                                                <option value="1230" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1230"){ ?> selected <?php } ?>>12:30</option>
+                                                <option value="1245" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1245"){ ?> selected <?php } ?>>12:45</option>
+                                                <option value="1300" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1300"){ ?> selected <?php } ?>>13:00</option>
+                                                <option value="1315" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1315"){ ?> selected <?php } ?>>13:15</option>
+                                                <option value="1330" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1330"){ ?> selected <?php } ?>>13:30</option>
+                                                <option value="1345" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1345"){ ?> selected <?php } ?>>13:45</option>
+                                                <option value="1400" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1400"){ ?> selected <?php } ?>>14:00</option>
+                                                <option value="1415" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1415"){ ?> selected <?php } ?>>14:15</option>
+                                                <option value="1430" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1430"){ ?> selected <?php } ?>>14:30</option>
+                                                <option value="1445" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1445"){ ?> selected <?php } ?>>14:45</option>
+                                                <option value="1500" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1500"){ ?> selected <?php } ?>>15:00</option>
+                                                <option value="1515" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1515"){ ?> selected <?php } ?>>15:15</option>
+                                                <option value="1530" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1530"){ ?> selected <?php } ?>>15:30</option>
+                                                <option value="1545" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1545"){ ?> selected <?php } ?>>15:45</option>
+                                            
+                                                <option value="1600" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1600"){ ?> selected <?php } ?>>16:00</option>
+                                                <option value="1615" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1615"){ ?> selected <?php } ?>>16:15</option>
+                                                <option value="1630" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1630"){ ?> selected <?php } ?>>16:30</option>
+                                                <option value="1645" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1645"){ ?> selected <?php } ?>>16:45</option>
+                                                <option value="1700" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1700"){ ?> selected <?php } ?>>17:00</option>
+                                                <option value="1715" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1715"){ ?> selected <?php } ?>>17:15</option>
+                                                <option value="1730" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1730"){ ?> selected <?php } ?>>17:30</option>
+                                                <option value="1745" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1745"){ ?> selected <?php } ?>>17:45</option>
+                                                <option value="1800" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1800"){ ?> selected <?php } ?>>18:00</option>
+                                                <option value="1815" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1815"){ ?> selected <?php } ?>>18:15</option>
+                                                <option value="1830" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1830"){ ?> selected <?php } ?>>18:30</option>
+                                                <option value="1845" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1845"){ ?> selected <?php } ?>>18:45</option>
+                                                <option value="1900" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1900"){ ?> selected <?php } ?>>19:00</option>
+                                                <option value="1915" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1915"){ ?> selected <?php } ?>>19:15</option>
+                                                <option value="1930" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1930"){ ?> selected <?php } ?>>19:30</option>
+                                                <option value="1945" <?php if(revertHora2($arrCont["pedidos_fechain"])=="1845"){ ?> selected <?php } ?>>19:45</option>
+                                                <option value="2000" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2000"){ ?> selected <?php } ?>>20:00</option>
+                                                <option value="2015" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2015"){ ?> selected <?php } ?>>20:15</option>
+                                                <option value="2030" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2030"){ ?> selected <?php } ?>>20:30</option>
+                                                <option value="2045" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2045"){ ?> selected <?php } ?>>20:45</option>
+                                                <option value="2100" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2100"){ ?> selected <?php } ?>>21:00</option>
+                                                <option value="2115" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2115"){ ?> selected <?php } ?>>21:15</option>
+                                                <option value="2130" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2130"){ ?> selected <?php } ?>>21:30</option>
+                                                <option value="2145" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2145"){ ?> selected <?php } ?>>21:45</option>
+                                                <option value="2200" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2200"){ ?> selected <?php } ?>>22:00</option>
+                                                <option value="2215" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2215"){ ?> selected <?php } ?>>22:15</option>
+                                                <option value="2230" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2230"){ ?> selected <?php } ?>>22:30</option>
+                                                <option value="2245" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2245"){ ?> selected <?php } ?>>22:45</option>
+                                                <option value="2300" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2300"){ ?> selected <?php } ?>>23:00</option>
+                                                <option value="2315" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2315"){ ?> selected <?php } ?>>23:15</option>
+                                                <option value="2330" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2330"){ ?> selected <?php } ?>>23:30</option>
+                                                <option value="2345" <?php if(revertHora2($arrCont["pedidos_fechain"])=="2345"){ ?> selected <?php } ?>>23:45</option>
+                                                <option value="0000" <?php if(revertHora2($arrCont["pedidos_fechain"])=="0000"){ ?> selected <?php } ?>>00:00</option>
+                                            </select>
                                         </div>
 
                                         <div class="hr-line-dashed col-xs-12"></div>
@@ -393,10 +471,11 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                         <div class="form-group col-xs-6" id="data_2">
                                             <label>Fecha Devolucion</label>
                                             <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="<?php echo revertFecha($arrCont["pedidos_fechaout"]); ?>" name="fechaout" id="fechaout">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" value="<?php echo revertFecha($arrCont["pedidos_fechaout"]); ?>" name="fechaout" id="fechaout" autocomplete="off">
                                             </div>
                                         </div>
-
+                                        <!--
                                         <div class="form-group col-xs-6">
                                             <label>Hora Devolucion</label>
                                             <div class="input-group clockpicker" data-autoclose="true">
@@ -405,6 +484,82 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                                     <span class="fa fa-clock-o"></span>
                                                 </span>
                                             </div>
+                                        </div>
+                                                -->
+                                        <div class="form-group col-xs-6">
+                                            <label>Hora Devolucion</label>
+                                            <select name="horaout" id="horaout" class="form-control">
+                                                <option value="" selected>Seleccionar hora de devolución</option>
+                                                <option value="0700" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0700"){ ?> selected <?php } ?>>07:00</option>
+                                                <option value="0715" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0715"){ ?> selected <?php } ?>>07:15</option>
+                                                <option value="0730" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0730"){ ?> selected <?php } ?>>07:30</option>
+                                                <option value="0745" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0745"){ ?> selected <?php } ?>>07:45</option>
+                                                <option value="0800" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0800"){ ?> selected <?php } ?>>08:00</option>
+                                                <option value="0815" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0815"){ ?> selected <?php } ?>>08:15</option>
+                                                <option value="0830" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0830"){ ?> selected <?php } ?>>08:30</option>
+                                                <option value="0845" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0845"){ ?> selected <?php } ?>>08:45</option>
+                                                <option value="0900" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0900"){ ?> selected <?php } ?>>09:00</option>
+                                                <option value="0915" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0915"){ ?> selected <?php } ?>>09:15</option>
+                                                <option value="0930" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0930"){ ?> selected <?php } ?>>09:30</option>
+                                                <option value="0945" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0945"){ ?> selected <?php } ?>>09:45</option>
+                                                <option value="1000" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1000"){ ?> selected <?php } ?>>10:00</option>
+                                                <option value="1015" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1015"){ ?> selected <?php } ?>>10:15</option>
+                                                <option value="1030" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1030"){ ?> selected <?php } ?>>10:30</option>
+                                                <option value="1045" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1045"){ ?> selected <?php } ?>>10:45</option>
+                                                <option value="1100" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1100"){ ?> selected <?php } ?>>11:00</option>
+                                                <option value="1115" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1115"){ ?> selected <?php } ?>>11:15</option>
+                                                <option value="1130" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1130"){ ?> selected <?php } ?>>11:30</option>
+                                                <option value="1145" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1145"){ ?> selected <?php } ?>>11:45</option>
+                                                <option value="1200" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1200"){ ?> selected <?php } ?>>12:00</option>
+                                                <option value="1215" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1215"){ ?> selected <?php } ?>>12:15</option>
+                                                <option value="1230" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1230"){ ?> selected <?php } ?>>12:30</option>
+                                                <option value="1245" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1245"){ ?> selected <?php } ?>>12:45</option>
+                                                <option value="1300" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1300"){ ?> selected <?php } ?>>13:00</option>
+                                                <option value="1315" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1315"){ ?> selected <?php } ?>>13:15</option>
+                                                <option value="1330" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1330"){ ?> selected <?php } ?>>13:30</option>
+                                                <option value="1345" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1345"){ ?> selected <?php } ?>>13:45</option>
+                                                <option value="1400" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1400"){ ?> selected <?php } ?>>14:00</option>
+                                                <option value="1415" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1415"){ ?> selected <?php } ?>>14:15</option>
+                                                <option value="1430" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1430"){ ?> selected <?php } ?>>14:30</option>
+                                                <option value="1445" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1445"){ ?> selected <?php } ?>>14:45</option>
+                                                <option value="1500" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1500"){ ?> selected <?php } ?>>15:00</option>
+                                                <option value="1515" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1515"){ ?> selected <?php } ?>>15:15</option>
+                                                <option value="1530" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1530"){ ?> selected <?php } ?>>15:30</option>
+                                                <option value="1545" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1545"){ ?> selected <?php } ?>>15:45</option>
+                                                <option value="1600" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1600"){ ?> selected <?php } ?>>16:00</option>
+                                                <option value="1615" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1615"){ ?> selected <?php } ?>>16:15</option>
+                                                <option value="1630" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1630"){ ?> selected <?php } ?>>16:30</option>
+                                                <option value="1645" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1645"){ ?> selected <?php } ?>>16:45</option>
+                                                <option value="1700" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1700"){ ?> selected <?php } ?>>17:00</option>
+                                                <option value="1715" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1715"){ ?> selected <?php } ?>>17:15</option>
+                                                <option value="1730" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1730"){ ?> selected <?php } ?>>17:30</option>
+                                                <option value="1745" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1745"){ ?> selected <?php } ?>>17:45</option>
+                                                <option value="1800" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1800"){ ?> selected <?php } ?>>18:00</option>
+                                                <option value="1815" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1815"){ ?> selected <?php } ?>>18:15</option>
+                                                <option value="1830" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1830"){ ?> selected <?php } ?>>18:30</option>
+                                                <option value="1845" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1845"){ ?> selected <?php } ?>>18:45</option>
+                                                <option value="1900" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1900"){ ?> selected <?php } ?>>19:00</option>
+                                                <option value="1915" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1915"){ ?> selected <?php } ?>>19:15</option>
+                                                <option value="1930" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1930"){ ?> selected <?php } ?>>19:30</option>
+                                                <option value="1945" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="1845"){ ?> selected <?php } ?>>19:45</option>
+                                                <option value="2000" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2000"){ ?> selected <?php } ?>>20:00</option>
+                                                <option value="2015" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2015"){ ?> selected <?php } ?>>20:15</option>
+                                                <option value="2030" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2030"){ ?> selected <?php } ?>>20:30</option>
+                                                <option value="2045" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2045"){ ?> selected <?php } ?>>20:45</option>
+                                                <option value="2100" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2100"){ ?> selected <?php } ?>>21:00</option>
+                                                <option value="2115" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2115"){ ?> selected <?php } ?>>21:15</option>
+                                                <option value="2130" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2130"){ ?> selected <?php } ?>>21:30</option>
+                                                <option value="2145" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2145"){ ?> selected <?php } ?>>21:45</option>
+                                                <option value="2200" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2200"){ ?> selected <?php } ?>>22:00</option>
+                                                <option value="2215" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2215"){ ?> selected <?php } ?>>22:15</option>
+                                                <option value="2230" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2230"){ ?> selected <?php } ?>>22:30</option>
+                                                <option value="2245" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2245"){ ?> selected <?php } ?>>22:45</option>
+                                                <option value="2300" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2300"){ ?> selected <?php } ?>>23:00</option>
+                                                <option value="2315" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2315"){ ?> selected <?php } ?>>23:15</option>
+                                                <option value="2330" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2330"){ ?> selected <?php } ?>>23:30</option>
+                                                <option value="2345" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="2345"){ ?> selected <?php } ?>>23:45</option>
+                                                <option value="0000" <?php if(revertHora2($arrCont["pedidos_fechaout"])=="0000"){ ?> selected <?php } ?>>00:00</option>
+                                            </select>
                                         </div>
 
                                         <div class="hr-line-dashed col-xs-12"></div>
@@ -433,7 +588,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                         <div class="hr-line-dashed col-xs-12"></div>
 
                                         <div class="form-group text-center " style="margin-top: 30px;">
-                                            <button name="agregar" class="btn btn-primary" id="agregar" type="button">Enviar</button>
+                                            <!--<button name="agregar" class="btn btn-primary" id="agregar" type="button">Enviar</button>-->
+                                            <button name="agregar" class="btn btn-primary" id="agregar" type="submit">Enviar</button>
                                             <a href="lstPedidos.php?seccion=pedidos" class="btn btn-primary">Cancelar</a>
                                         </div>
 
@@ -543,6 +699,40 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
         </div>
     </div>
 
+    <!-- MODAL VACIO -->
+    <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>La hora y fecha no pueden estar vacias</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalError2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>La hora y fecha de salida no pueden ser menor o igual a la fecha de salida</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL VACIO -->
+
 
     <!-- Mainly scripts -->
     <script src="js/jquery-3.3.1.js"></script>
@@ -559,6 +749,7 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
     <!-- Data picker -->
     <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="js/plugins/datapicker/locales/bootstrap-datepicker.es.min.js"></script>
     <!-- Clock picker -->
     <script src="js/plugins/clockpicker/clockpicker.js"></script>
 
@@ -593,48 +784,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
         $(document).ready(function() {
 
-            /*
-            $("#form1").validate({
-                rules: {
-                    nombre: "required",
-                    materia: "required",
-                    docente: "required",
-                    responsable: "required",
-                    curso: "required",
-                    comision: "required",
-                    fechain: "required",
-                    horain: "required",
-                    fechaout: "required",
-                    horaout: "required"
-
-                },
-                messages: {
-                    nombre: "Campo obligatorio",
-                    materia: "Campo obligatorio",
-                    docente: "Campo obligatorio",
-                    responsable: "Campo obligatorio",
-                    curso: "Campo obligatorio",
-                    comision: "Campo obligatorio",
-                    fechain: "Campo obligatorio",
-                    horain: "Campo obligatorio",
-                    fechaout: "Campo obligatorio",
-                    horaout: "Campo obligatorio"
-                },
-                submitHandler: function(form) {
-                    var integrantes = $("#integrantes").val();
-                    if (integrantes.length == 0) {
-                        $("#integrantes-error").show().html("Campo obligatorio");
-                    } else {
-                        $("#integrantes-error").hide();
-
-                        validEquipos();
-
-                    }
-
-                }
-            });
-            */
-
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
@@ -659,7 +808,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 autoclose: true,
                 startDate: stardaten + " 00:00 AM",
                 todayBtn: "linked",
-                todayHighlight: true
+                todayHighlight: true,
+                language: "es"
             });
 
             $('#data_2 .input-group.date').datepicker({
@@ -667,7 +817,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 autoclose: true,
                 //startDate:  stardaten+" 00:00 AM",
                 todayBtn: "linked",
-                todayHighlight: true
+                todayHighlight: true,
+                language: "es"
             });
 
             $("#fechain").change(function() {
@@ -697,15 +848,49 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
         });
         /* Fin pestañas */
 
-        $('#agregarmod').click(function() {
+        /*$('#agregarmod').click(function() {
             $("#clasef").val('0');
             $("#subclase").html('<option value=""></option>');
             $("#equiposdisponibles").html("");
             $('#modal').modal('show');
+        });*/
+
+        $('#agregarmod').click(function() {
+
+            var fechain = $("#fechain").val();
+            var fechaout = $("#fechaout").val();
+            var horain = $('#horain option:selected').val();
+            var horaout = $('#horaout option:selected').val();
+
+            var arrayfechain = fechain.split("/");
+            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+
+            var arrayfechaout = fechaout.split("/");
+            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+
+            var horainfin = horain;
+
+            var horaoutfin = horaout;
+
+            var fechasalida = fechainfin + horainfin;
+            var fecharegreso = fechaoutfin + horaoutfin;
+
+            if (fechain == "" || fechaout == "" || horain == "" || horaout == "") {
+                $('#modalError').modal('show');
+            } else if(fechasalida >= fecharegreso){ 
+                $('#modalError2').modal('show');
+            } else {
+                $("#clasef").val('0');
+
+                $("#subclase").html('<option value=""></option>');
+
+                $("#equiposdisponibles").html("");
+                $('#modal').modal('show');
+            }
+            
         });
 
         function addarMod(id, nombre) {
-
 
             var fechain = $("#fechain").val();
             var fechaout = $("#fechaout").val();
@@ -729,8 +914,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
             var fechasalida = fechainfin + horainfin;
             var fecharegreso = fechaoutfin + horaoutfin;
-
-
 
 
             $.ajax({
@@ -763,7 +946,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
         function borrarMod(id) {
 
-
             //var idactual = $("#id").val();
             var idtemporal = $("#idtemporal").val();
             var idRegistro = id;
@@ -780,7 +962,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 .done(function(data) {
                     $("#" + idRegistro).remove();
                 });
-
 
         }
 
@@ -810,8 +991,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             var horaout = $("#horaout").val();
             var idTemp = $("#idtemporal").val();
 
-
-
             var arrayfechain = fechain.split("/");
             var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
 
@@ -828,7 +1007,6 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             var fecharegreso = fechaoutfin + horaoutfin;
 
             var modexist = $("#ordenModulos").val();
-
 
             $.ajax({
                     method: "POST",
@@ -864,8 +1042,108 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             $(selector).chosen(config[selector]);
         }
 
+        $("#form1").validate({
+            rules: {
+                nombre: "required",
+                materia: "required",
+                docente: "required",
+                //responsable: "required",
+                curso: "required",
+                //comision: "required",
+                fechain: "required",
+                horain: "required",
+                fechaout: "required",
+                horaout: "required"
 
-        $("#agregar").click(function() {
+            },
+            messages: {
+                nombre: "Campo obligatorio",
+                materia: "Campo obligatorio",
+                docente: "Campo obligatorio",
+                //responsable: "Campo obligatorio",
+                curso: "Campo obligatorio",
+                //comision: "Campo obligatorio",
+                fechain: "Campo obligatorio",
+                horain: "Campo obligatorio",
+                fechaout: "Campo obligatorio",
+                horaout: "Campo obligatorio"
+            },
+            submitHandler: function(form) {
+                var fechain = $("#fechain").val();
+                var fechaout = $("#fechaout").val();
+                /*var horain = $("#horain").val();
+                var horaout = $("#horaout").val();*/
+                var horain = $('#horain option:selected').val();
+                var horaout = $('#horaout option:selected').val();
+                var idTemp = $("#idtemporal").val();
+
+                var arrayfechain = fechain.split("/");
+                var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+
+                var arrayfechaout = fechaout.split("/");
+                var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+
+
+                var horainfin = horain;
+                var horaoutfin = horaout;
+
+                var fechasalida = fechainfin + horainfin;
+                var fecharegreso = fechaoutfin + horaoutfin;
+
+                $.ajax({
+                        method: "POST",
+                        url: "validarCantEquipos.php",
+                        dataType: "json",
+                        data: {
+                            idTemp: idTemp
+                        }
+                    })
+                    .done(function(data) {
+                        if (data.estado == 0) {
+                            $("#alert").html("Tiene que agregar equipos al pedido.").removeClass("dangerstyle").addClass("dangerstyleview");
+                        } else {
+                            $.ajax({
+                                method: "POST",
+                                url: "validarUpdate.php",
+                                dataType: "json",
+                                data: {
+                                    fechasalida: fechasalida,
+                                    fecharegreso: fecharegreso,
+                                    idTemp: idTemp
+                                }
+                            })
+                            .done(function(data) {
+                                //
+                                if (data.estado == 1) {
+                                    
+                                    
+                                    var arrays = data.identificadores;
+                                    for (let index = 0; index < arrays.length; index++) {
+
+                                        var posicion = idsss.indexOf(arrays[index]);
+
+                                        if(posicion !=-1){
+                                            posicion = posicion+1;
+                                            $("#"+posicion).addClass("alerta-epocupadounidad");
+                                        }
+
+                                    }
+
+                                    $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
+                                } else {
+                                    document.getElementById("form1").submit();
+                                }
+
+                            });
+                        }
+
+                    });
+
+            }
+        });
+
+
+        /*$("#agregar").click(function() {
 
             var fechain = $("#fechain").val();
             var fechaout = $("#fechaout").val();
@@ -946,7 +1224,7 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
                 });
 
-        });
+        });*/
 
        
         

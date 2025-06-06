@@ -84,6 +84,14 @@ function revertHora($strFecha) {
   return $hora;
 }
 
+function revertHora2($strFecha) {
+  $hora = substr($strFecha, 8,2);    // devuelve "f"
+  $minutos = substr($strFecha, 10,2);    // devuelve "ef"
+
+  $hora = $hora."".$minutos;
+  return $hora;
+}
+
 function invertFecha($strFecha) {
   $dia = substr($strFecha, 0,2);    // devuelve "f"
   $mes = substr($strFecha, 3,2);    // devuelve "ef"
