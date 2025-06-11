@@ -1113,6 +1113,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                 }
                             })
                             .done(function(data) {
+
+                                //console.log(data);
                                 //
                                 if (data.estado == 1) {
                                     

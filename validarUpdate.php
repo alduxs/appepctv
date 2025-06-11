@@ -67,12 +67,7 @@ if ($intQtyRecords > 0) {
                 
             }
             
-        } /*else {
-            if($estado != 1){
-                $estado = 0;
-            }
-            
-        }*/
+        } 
     }
     
 } else {
