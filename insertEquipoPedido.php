@@ -18,5 +18,11 @@ $arrData[2] = $idEquipo;
 //
 $query = "INSERT INTO pedidos_equipos_temp (pe_id_pedido_temp,pe_id_equipo) VALUES (?,?)";
 $intIdRegistro = $objContenido->insertContenido($link, $arrData, $query); //Registro de página
-echo $intIdRegistro;
+
+$arr = array(
+    'idEquipo' => $idEquipo, 
+    'idRegistro' => $intIdRegistro , 
+);
+
+echo json_encode($arr);
 ?>

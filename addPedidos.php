@@ -714,197 +714,6 @@ if ($intQtyRecords > 0) {
 
         $('.clockpicker').clockpicker();
 
-        /* Pestañas */
-        var pesActiva = 1;
-        $(".pes").click(function() {
-            var idact = $(this).attr("id");
-            var divide = idact.split("-");
-            var idact2 = divide[1];
-            $("#p-" + pesActiva).removeClass("activa");
-            $("#p-" + idact2).addClass("activa");
-
-            $("#p" + pesActiva).hide();
-            $("#p" + idact2).show();
-
-            pesActiva = idact2;
-
-        });
-        /* Fin pestañas */
-
-        $('#agregarmod').click(function() {
-
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            var horain = $('#horain option:selected').val();
-            var horaout = $('#horaout option:selected').val();
-
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var horainfin = horain;
-
-            var horaoutfin = horaout;
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-
-            if (fechain == "" || fechaout == "" || horain == "" || horaout == "") {
-                $('#modalError').modal('show');
-            } else if(fechasalida >= fecharegreso){ 
-                $('#modalError2').modal('show');
-            } else {
-                $("#clasef").val('0');
-
-                $("#subclase").html('<option value=""></option>');
-
-                $("#equiposdisponibles").html("");
-                $('#modal').modal('show');
-            }
-            
-        });
-
-        function addarMod(id, nombre) {
-
-
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            //var horain = $("#horain").val();
-            var horain = $('#horain option:selected').val();
-            //var horaout = $("#horaout").val();
-            var horaout = $('#horaout option:selected').val();
-
-            var idtemporal = $("#idtemporal").val();
-
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var horainfin = horain;
-
-            var horaoutfin = horaout;
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-
-
-            $.ajax({
-                    method: "POST",
-                    url: "insertEquipoPedido.php",
-
-                    data: {
-                        idtemporal: idtemporal,
-                        fechasalida: fechasalida,
-                        fecharegreso: fecharegreso,
-                        idequipo: id
-                    }
-                })
-                .done(function(data) {
-
-                    /*$("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    var cont = "<div class=\"claseequipo\" id=\"" + id + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + id + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";*/
-
-                    $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    var cont = "<div class=\"claseequipo\" id=\"" + data + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";
-
-                    $("#contenedor-modulos").append(cont);
-
-                    $("#e" + id).removeClass("claseequipo2").addClass("claseequipo2off");
-                    $("#e" + id + " .nombre").prop("onclick", null).off('click');
-                });
-
-        }
-
-        function borrarMod(id) {
-
-            var idtemporal = $("#idtemporal").val();
-            //var splitid = id.split("-");
-            //var destino = splitid[1];
-            //var idRegistro = id;
-            var idRegistro = id;
-
-            $.ajax({
-                    method: "POST",
-                    url: "deleteEquipoPedido.php",
-                    /*data: {
-                        idtemporal: idtemporal,
-                        idequipo: id
-                    }*/
-                    data: {
-                        idtemporal: idtemporal,
-                        idregistro: idRegistro
-                    }
-                })
-                .done(function(data) {
-                    $("#" + idRegistro).remove();
-                });
-
-        }
-
-        $("#clasef").change(function() {
-            var idClase = $(this).val();
-            $("#equiposdisponibles").html("");
-            $.ajax({
-                    method: "POST",
-                    url: "armaComboPed01.php",
-                    data: {
-                        idClase: idClase,
-                    }
-                })
-                .done(function(data) {
-                    $("#subclase").html(data);
-                });
-        });
-
-        $("#subclase").change(function() {
-            var idSubClase = $(this).val();
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            /*var horain = $("#horain").val();
-            var horaout = $("#horaout").val();*/
-            var horain = $('#horain option:selected').val();
-            var horaout = $('#horaout option:selected').val();
-            var idTemp = $("#idtemporal").val();
-
-            $("#equiposdisponibles").html("");
-
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var horainfin = horain;
-            var horaoutfin = horaout;
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-
-            var modexist = $("#ordenModulos").val();
-
-
-            $.ajax({
-                    method: "POST",
-                    url: "armaComboPed02.php",
-                    data: {
-                        idSubClase: idSubClase,
-                        fechasalida: fechasalida,
-                        fecharegreso: fecharegreso,
-                        modexist: modexist,
-                        idTemp: idTemp
-                    }
-                })
-                .done(function(data) {
-                    //$("#subclase").html(data);
-
-                    $("#equiposdisponibles").append(data);
-                });
-        });
-
         var config = {
             '.chosen-select': {},
             '.chosen-select-deselect': {
@@ -922,15 +731,177 @@ if ($intQtyRecords > 0) {
             $(selector).chosen(config[selector]);
         }
 
+        /* Pestañas */
+       /* var pesActiva = 1;
+        $(".pes").click(function() {
+            var idact = $(this).attr("id");
+            var divide = idact.split("-");
+            var idact2 = divide[1];
+            $("#p-" + pesActiva).removeClass("activa");
+            $("#p-" + idact2).addClass("activa");
 
+            $("#p" + pesActiva).hide();
+            $("#p" + idact2).show();
+
+            pesActiva = idact2;
+
+        });*/
+        /* Fin pestañas */
+
+        /* ------------------------------------------------------------------------------------- Procesos */
+
+        function obtenerFecha(){
+
+            let infoFecha = {};
+
+            let fechain = $("#fechain").val();
+            let fechaout = $("#fechaout").val();
+            let horain = $('#horain option:selected').val();
+            let horaout = $('#horaout option:selected').val();
+
+            let arrayfechain = fechain.split("/");
+            let fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+
+            let arrayfechaout = fechaout.split("/");
+            let fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+
+            let horainfin = horain;
+
+            let horaoutfin = horaout;
+
+            let fechasalida = fechainfin + horainfin;
+            let fecharegreso = fechaoutfin + horaoutfin;
+
+            infoFecha = {
+                "fechaSalida":fechain,
+                "horaSalida":horain,
+                "fechaRegereso":fechaout,
+                "horaRegerso":horaout,
+                "fechaSalidaCompleta":fechasalida,
+                "fechaRegresoCompleta":fecharegreso
+            } 
+
+            return infoFecha;
+        }
+
+        $('#agregarmod').click(function() {
+
+            let fechas = obtenerFecha();
+
+
+            if (fechas.fechaSalida == "" || fechas.fechaRegereso == "" || fechas.horaSalida == "" || fechas.horaRegerso == "") {
+                $('#modalError').modal('show');
+            } else if(fechas.fechaSalidaCompleta >= fechas.fechaRegresoCompleta){ 
+                $('#modalError2').modal('show');
+            } else {
+                $("#clasef").val('0');
+                $("#subclase").html('<option value=""></option>');
+                $("#equiposdisponibles").html("");
+                $('#modal').modal('show');
+            }
+            
+        });
+
+         $("#clasef").change(function() {
+            let idClase = $(this).val();
+            $("#equiposdisponibles").html("");
+            $.ajax({
+                    method: "POST",
+                    url: "armaComboPed01.php",
+                    data: {
+                        idClase: idClase,
+                    }
+                })
+                .done(function(data) {
+                    $("#subclase").html(data);
+                });
+        });
+
+        $("#subclase").change(function() {
+            let idSubClase = $(this).val();
+            let idTemp = $("#idtemporal").val();
+            let modexist = $("#ordenModulos").val();
+
+            $("#equiposdisponibles").html("");
+
+            let fechas = obtenerFecha();
+
+            $.ajax({
+                    method: "POST",
+                    url: "armaComboPed02.php",
+                    data: {
+                        idSubClase: idSubClase,
+                        fechasalida: fechas.fechaSalidaCompleta,
+                        fecharegreso: fechas.fechaRegresoCompleta,
+                        modexist: modexist,
+                        idTemp: idTemp
+                    }
+                })
+                .done(function(data) {
+
+                    $("#equiposdisponibles").append(data);
+                });
+        });
+
+        function addarMod(id, nombre) {
+
+
+            var idtemporal = $("#idtemporal").val();
+
+            let fechas = obtenerFecha();
+
+
+            $.ajax({
+                    method: "POST",
+                    url: "insertEquipoPedido.php",
+                    dataType: 'json',
+                    data: {
+                        idtemporal: idtemporal,
+                        fechasalida: fechas.fechaSalidaCompleta,
+                        fecharegreso: fechas.fechaRegresoCompleta,
+                        idequipo: id
+                    }
+                })
+                .done(function(data) {
+
+                    $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
+                    var cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + ","+ data.idEquipo+")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";
+
+                    $("#contenedor-modulos").append(cont);
+
+                    $("#e" + id).removeClass("claseequipo2").addClass("claseequipo2off");
+                    $("#e" + id + " .nombre").prop("onclick", null).off('click');
+                });
+
+        }
+
+        function borrarMod(idRegistro,idEquipo) {
+
+            let idtemporal = $("#idtemporal").val();
+            let idRegistroF = idRegistro;
+            let idEquipoF = idEquipo;
+
+            $.ajax({
+                    method: "POST",
+                    url: "deleteEquipoPedido.php",
+                    
+                    data: {
+                        idtemporal: idtemporal,
+                        idregistro: idRegistroF
+                    }
+                })
+                .done(function(data) {
+                    $("#ef" + idEquipoF).remove();
+                });
+        }
+
+       
         $("#form1").validate({
             rules: {
                 nombre: "required",
                 materia: "required",
                 docente: "required",
-                //responsable: "required",
                 curso: "required",
-                //comision: "required",
                 fechain: "required",
                 horain: "required",
                 fechaout: "required",
@@ -941,40 +912,17 @@ if ($intQtyRecords > 0) {
                 nombre: "Campo obligatorio",
                 materia: "Campo obligatorio",
                 docente: "Campo obligatorio",
-                //responsable: "Campo obligatorio",
                 curso: "Campo obligatorio",
-                //comision: "Campo obligatorio",
                 fechain: "Campo obligatorio",
                 horain: "Campo obligatorio",
                 fechaout: "Campo obligatorio",
                 horaout: "Campo obligatorio"
             },
             submitHandler: function(form) {
-                var fechain = $("#fechain").val();
-                var fechaout = $("#fechaout").val();
-                /*var horain = $("#horain").val();
-                var horaout = $("#horaout").val();*/
-                var horain = $('#horain option:selected').val();
-                var horaout = $('#horaout option:selected').val();
-                var idTemp = $("#idtemporal").val();
 
-                var arrayfechain = fechain.split("/");
-                var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+                let idTemp = $("#idtemporal").val();
 
-                var arrayfechaout = fechaout.split("/");
-                var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-                /*var arrayhorain = horain.split(":");
-                var horainfin = arrayhorain[0] + arrayhorain[1];
-
-                var arrayhoraout = horaout.split(":");
-                var horaoutfin = arrayhoraout[0] + arrayhoraout[1];*/
-
-                var horainfin = horain;
-                var horaoutfin = horaout;
-
-                var fechasalida = fechainfin + horainfin;
-                var fecharegreso = fechaoutfin + horaoutfin;
+                let fechas = obtenerFecha();
 
                 $.ajax({
                         method: "POST",
@@ -993,13 +941,22 @@ if ($intQtyRecords > 0) {
                                     url: "validarInsert.php",
                                     dataType: "json",
                                     data: {
-                                        fechasalida: fechasalida,
-                                        fecharegreso: fecharegreso,
+                                        fechasalida: fechas.fechaSalidaCompleta,
+                                        fecharegreso: fechas.fechaRegresoCompleta,
                                         idTemp: idTemp
                                     }
                                 })
                                 .done(function(data) {
                                     if (data.estado == 1) {
+
+                                        var arrays = data.identificadores;
+
+                                        for (let index = 0; index < arrays.length; index++) {
+
+                                            $("#ef"+arrays[index]).addClass("alerta-epocupadounidad");
+
+                                        }
+
                                         $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
                                     } else {
                                         document.getElementById("form1").submit();
@@ -1009,12 +966,9 @@ if ($intQtyRecords > 0) {
                         }
 
                     });
-
             }
         });
     </script>
-
-
 
 </body>
 

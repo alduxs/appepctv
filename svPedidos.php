@@ -142,8 +142,6 @@ switch ($strOperacion) {
 
         $idtemporal = $_POST["idtemporal"];
 
-        
-
         $fechin = invertFecha($_POST["fechain"]);
         $horain = hora($_POST["horain"]);
         $retiro = $fechin . $horain;
@@ -153,7 +151,6 @@ switch ($strOperacion) {
         $devolucion = $fechout . $horaout;
 
         $Update_row = new General();
-
 
         //UPDATE PEDIDO TEMP
         $arrDataTemp[0] = $idtemporal;

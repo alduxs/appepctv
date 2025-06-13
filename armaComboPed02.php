@@ -47,13 +47,19 @@ for ($i = 0; $i < count($equipo); $i++) {
 
             if ($arrCont["pedidos_fechain"] < $fechasalida) {
 
-                if ($arrCont["pedidos_fechaout"] >= $fechasalida) {
+                /*if ($arrCont["pedidos_fechaout"] >= $fechasalida) {
+                    $equipo[$i]["estado"] = "1";
+                }*/
+                if ($arrCont["pedidos_fechaout"] > $fechasalida) {
                     $equipo[$i]["estado"] = "1";
                 }
             } else if ($arrCont["pedidos_fechain"] == $fechasalida) {
                 $equipo[$i]["estado"] = "1";
             } else if ($arrCont["pedidos_fechain"] > $fechasalida) {
-                if ($arrCont["pedidos_fechain"] <= $fecharegreso) {
+                /*if ($arrCont["pedidos_fechain"] <= $fecharegreso) {
+                    $equipo[$i]["estado"] = "1";
+                }*/
+                if ($arrCont["pedidos_fechain"] < $fecharegreso) {
                     $equipo[$i]["estado"] = "1";
                 }
             }

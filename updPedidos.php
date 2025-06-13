@@ -1090,6 +1090,12 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 var fechasalida = fechainfin + horainfin;
                 var fecharegreso = fechaoutfin + horaoutfin;
 
+                var ordenModulos = $("#ordenModulos").val();
+                var idsss = ordenModulos.split(",");
+                
+                $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
+                $("div.alerta-epocupadounidad").removeClass("alerta-epocupadounidad");
+
                 $.ajax({
                         method: "POST",
                         url: "validarCantEquipos.php",
@@ -1114,12 +1120,14 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                             })
                             .done(function(data) {
 
-                                //console.log(data);
+                                //
                                 //
                                 if (data.estado == 1) {
                                     
-                                    
                                     var arrays = data.identificadores;
+
+                                    console.log(arrays);
+
                                     for (let index = 0; index < arrays.length; index++) {
 
                                         var posicion = idsss.indexOf(arrays[index]);
