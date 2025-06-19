@@ -80,8 +80,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 }*/
 
 // BORRO TOTDO EN TEMP
-$query = "DELETE FROM pedidos_equipos_temp WHERE pe_id_pedido_temp = '" . $idtemp . "'";
-$intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
+/*$query = "DELETE FROM pedidos_equipos_temp WHERE pe_id_pedido_temp = '" . $idtemp . "'";
+$intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);*/
 
 //EQUIPOS
 $queryEqip = "SELECT peq.*,eq.*
@@ -120,8 +120,10 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 }
 
 // BORRO TOTDO EN TEMP
+/*
 $query = "DELETE FROM pedidos_equipos WHERE pe_id_pedido_temp = '" . $idtemp . "'";
 $intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
+*/
 
 ?>
 <!DOCTYPE HTML>
@@ -1041,31 +1043,6 @@ $intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
             let fechas = obtenerFecha();
             let idtemporal = $("#idtemporal").val();
 
-            /*
-
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
-
-            //var idactual = $("#id").val();
-            
-
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
-
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-            */
 
 
             $.ajax({

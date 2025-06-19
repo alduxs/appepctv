@@ -173,7 +173,6 @@ switch ($strOperacion) {
         $query = "UPDATE pedidos SET  pedidos_nombre = ?,pedidos_fechain = ?,pedidos_fechaout = ?, pedidos_estado = ? WHERE pedidos_id = ?";
         $intIdRegistro = $Update_row->updateContenido($link, $arrData, $query);
 
-
         //Borra Todos los Detalles
         $query = "DELETE FROM pedidos_detalle WHERE pd_id_pedido = " . $arrData[0];
         $intIdRegistroDel1 = $Update_row->getAllContenido($link, $query);
@@ -186,7 +185,7 @@ switch ($strOperacion) {
         $query = "DELETE FROM pedidos_equipos WHERE pe_id_pedido = " . $arrData[0];
         $intIdRegistroDel1 = $Update_row->getAllContenido($link, $query);
 
-        //INSERTA Tp
+        //INSERTA TP
         $arrData2[0] = '';
         $arrData2[1] = $arrData[0];
         $arrData2[2] = 1;

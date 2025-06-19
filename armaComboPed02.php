@@ -37,7 +37,7 @@ for ($i = 0; $i < count($equipo); $i++) {
     $query = "SELECT *
     FROM pedidos_equipos pe
     LEFT JOIN pedidos p ON p.pedidos_id = pe.pe_id_pedido
-    WHERE pe_id_equipo =" . $equipo[$i]["id"] . " AND p.pedidos_estado < 3 AND  p.pedidos_fechaout >= '" . $fechalimite . "'";
+    WHERE pe_id_equipo =" . $equipo[$i]["id"] . " AND p.pedidos_estado < 3 AND  p.pedidos_fechaout >= '" . $fechalimite . "' AND pe_id_pedido_temp != '".$idTemp."'";
 
     $rsCont = $objContenido->getAllContenido($link, $query);
     $intQtyRecords = $rsCont->rowCount();
@@ -46,19 +46,14 @@ for ($i = 0; $i < count($equipo); $i++) {
         while ($arrCont = $rsCont->fetch(PDO::FETCH_BOTH)) {
 
             if ($arrCont["pedidos_fechain"] < $fechasalida) {
-
-                /*if ($arrCont["pedidos_fechaout"] >= $fechasalida) {
-                    $equipo[$i]["estado"] = "1";
-                }*/
+    
                 if ($arrCont["pedidos_fechaout"] > $fechasalida) {
                     $equipo[$i]["estado"] = "1";
                 }
             } else if ($arrCont["pedidos_fechain"] == $fechasalida) {
                 $equipo[$i]["estado"] = "1";
             } else if ($arrCont["pedidos_fechain"] > $fechasalida) {
-                /*if ($arrCont["pedidos_fechain"] <= $fecharegreso) {
-                    $equipo[$i]["estado"] = "1";
-                }*/
+              
                 if ($arrCont["pedidos_fechain"] < $fecharegreso) {
                     $equipo[$i]["estado"] = "1";
                 }
