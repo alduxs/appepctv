@@ -181,9 +181,7 @@ switch ($strOperacion) {
         $query = "DELETE FROM pedidos_detalle2 WHERE pd2_id_pedido = " . $arrData[0];
         $intIdRegistroDel1 = $Update_row->getAllContenido($link, $query);
 
-        //Borra Todos los Equipos
-        $query = "DELETE FROM pedidos_equipos WHERE pe_id_pedido = " . $arrData[0];
-        $intIdRegistroDel1 = $Update_row->getAllContenido($link, $query);
+        
 
         //INSERTA TP
         $arrData2[0] = '';
@@ -233,6 +231,10 @@ switch ($strOperacion) {
         //
         $query = "INSERT INTO pedidos_detalle2 (pd2_id_pedido,pd2_comision,pd2_curso) VALUES (?,?,?)";
         $intIdRegistro4 = $Update_row->insertContenido($link, $arrData2, $query); //Registro de página
+
+        //Borra Todos los Equipos
+        $query = "DELETE FROM pedidos_equipos WHERE pe_id_pedido = " . $arrData[0];
+        $intIdRegistroDel1 = $Update_row->getAllContenido($link, $query);
 
 
         //SELECIONA DE LA TABLA DE PEDIDOS EQUPOS TEMPORAL TODoS LOS EQUIPOS SOLICITADOS
