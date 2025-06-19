@@ -133,6 +133,22 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             background-color: #e3dbdb;
             border: 1px solid #ff0000;
         }
+
+        .check-btn {
+            float: right;
+            border-radius: 3px;
+            background-color: red;
+            border-color: red;
+            color: #FFFFFF;
+            padding: 5px 8px;
+            cursor: pointer;
+            margin-left: 6px;
+            opacity: 0;
+        }
+
+        .alerta-epocupadounidad {
+            border: 1px solid red;
+        }
     </style>
 
 </head>
@@ -230,7 +246,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                                     $rsPost = $objContenido->getAllContenido($link, $queryPost);
                                                     ?>
                                                     <?php while ($arrPost = $rsPost->fetch(PDO::FETCH_BOTH)) { ?>
-                                                        <?php var_dump($arrPost); ?>
+                                                        <?php //var_dump($arrPost); 
+                                                        ?>
                                                         <option value="<?php echo $arrPost["profesores_id"] ?>" <?php if ($arrPost["profesores_id"] == $arrContProf["pd_id_registro"]) { ?>selected<?php } ?>><?php echo $arrPost["profesores_apellido"] . " " . $arrPost["profesores_name"]; ?></option>
                                                     <?php } ?>
                                                 </select>
@@ -426,80 +443,80 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                             </div>
                                                     -->
                                             <div class="form-group col-xs-6">
-                                            <label>Hora Devolución</label>
-                                            <select name="horaout" id="horaout" class="form-control">
-                                                <option value="" selected>Seleccionar hora de devolución</option>
-                                                <option value="0700">07:00</option>
-                                                <option value="0715">07:15</option>
-                                                <option value="0730">07:30</option>
-                                                <option value="0745">07:45</option>
-                                                <option value="0800">08:00</option>
-                                                <option value="0815">08:15</option>
-                                                <option value="0830">08:30</option>
-                                                <option value="0845">08:45</option>
-                                                <option value="0900">09:00</option>
-                                                <option value="0915">09:15</option>
-                                                <option value="0930">09:30</option>
-                                                <option value="0945">09:45</option>
-                                                <option value="1000">10:00</option>
-                                                <option value="1015">10:15</option>
-                                                <option value="1030">10:30</option>
-                                                <option value="1045">10:45</option>
-                                                <option value="1100">11:00</option>
-                                                <option value="1115">11:15</option>
-                                                <option value="1130">11:30</option>
-                                                <option value="1145">11:45</option>
-                                                <option value="1200">12:00</option>
-                                                <option value="1215">12:15</option>
-                                                <option value="1230">12:30</option>
-                                                <option value="1245">12:45</option>
-                                                <option value="1300">13:00</option>
-                                                <option value="1315">13:15</option>
-                                                <option value="1330">13:30</option>
-                                                <option value="1345">13:45</option>
-                                                <option value="1400">14:00</option>
-                                                <option value="1415">14:15</option>
-                                                <option value="1430">14:30</option>
-                                                <option value="1445">14:45</option>
-                                                <option value="1500">15:00</option>
-                                                <option value="1515">15:15</option>
-                                                <option value="1530">15:30</option>
-                                                <option value="1545">15:45</option>
-                                                <option value="1600">16:00</option>
-                                                <option value="1615">16:15</option>
-                                                <option value="1630">16:30</option>
-                                                <option value="1645">16:45</option>
-                                                <option value="1700">17:00</option>
-                                                <option value="1715">17:15</option>
-                                                <option value="1730">17:30</option>
-                                                <option value="1745">17:45</option>
-                                                <option value="1800">18:00</option>
-                                                <option value="1815">18:15</option>
-                                                <option value="1830">18:30</option>
-                                                <option value="1845">18:45</option>
-                                                <option value="1900">19:00</option>
-                                                <option value="1915">19:15</option>
-                                                <option value="1930">19:30</option>
-                                                <option value="1945">19:45</option>
-                                                <option value="2000">20:00</option>
-                                                <option value="2015">20:15</option>
-                                                <option value="2030">20:30</option>
-                                                <option value="2045">20:45</option>
-                                                <option value="2100">21:00</option>
-                                                <option value="2115">21:15</option>
-                                                <option value="2130">21:30</option>
-                                                <option value="2145">21:45</option>
-                                                <option value="2200">22:00</option>
-                                                <option value="2215">22:15</option>
-                                                <option value="2230">22:30</option>
-                                                <option value="2245">22:45</option>
-                                                <option value="2300">23:00</option>
-                                                <option value="2315">23:15</option>
-                                                <option value="2330">23:30</option>
-                                                <option value="2345">23:45</option>
-                                                <option value="0000">00:00</option>
-                                            </select>
-                                        </div>
+                                                <label>Hora Devolución</label>
+                                                <select name="horaout" id="horaout" class="form-control">
+                                                    <option value="" selected>Seleccionar hora de devolución</option>
+                                                    <option value="0700">07:00</option>
+                                                    <option value="0715">07:15</option>
+                                                    <option value="0730">07:30</option>
+                                                    <option value="0745">07:45</option>
+                                                    <option value="0800">08:00</option>
+                                                    <option value="0815">08:15</option>
+                                                    <option value="0830">08:30</option>
+                                                    <option value="0845">08:45</option>
+                                                    <option value="0900">09:00</option>
+                                                    <option value="0915">09:15</option>
+                                                    <option value="0930">09:30</option>
+                                                    <option value="0945">09:45</option>
+                                                    <option value="1000">10:00</option>
+                                                    <option value="1015">10:15</option>
+                                                    <option value="1030">10:30</option>
+                                                    <option value="1045">10:45</option>
+                                                    <option value="1100">11:00</option>
+                                                    <option value="1115">11:15</option>
+                                                    <option value="1130">11:30</option>
+                                                    <option value="1145">11:45</option>
+                                                    <option value="1200">12:00</option>
+                                                    <option value="1215">12:15</option>
+                                                    <option value="1230">12:30</option>
+                                                    <option value="1245">12:45</option>
+                                                    <option value="1300">13:00</option>
+                                                    <option value="1315">13:15</option>
+                                                    <option value="1330">13:30</option>
+                                                    <option value="1345">13:45</option>
+                                                    <option value="1400">14:00</option>
+                                                    <option value="1415">14:15</option>
+                                                    <option value="1430">14:30</option>
+                                                    <option value="1445">14:45</option>
+                                                    <option value="1500">15:00</option>
+                                                    <option value="1515">15:15</option>
+                                                    <option value="1530">15:30</option>
+                                                    <option value="1545">15:45</option>
+                                                    <option value="1600">16:00</option>
+                                                    <option value="1615">16:15</option>
+                                                    <option value="1630">16:30</option>
+                                                    <option value="1645">16:45</option>
+                                                    <option value="1700">17:00</option>
+                                                    <option value="1715">17:15</option>
+                                                    <option value="1730">17:30</option>
+                                                    <option value="1745">17:45</option>
+                                                    <option value="1800">18:00</option>
+                                                    <option value="1815">18:15</option>
+                                                    <option value="1830">18:30</option>
+                                                    <option value="1845">18:45</option>
+                                                    <option value="1900">19:00</option>
+                                                    <option value="1915">19:15</option>
+                                                    <option value="1930">19:30</option>
+                                                    <option value="1945">19:45</option>
+                                                    <option value="2000">20:00</option>
+                                                    <option value="2015">20:15</option>
+                                                    <option value="2030">20:30</option>
+                                                    <option value="2045">20:45</option>
+                                                    <option value="2100">21:00</option>
+                                                    <option value="2115">21:15</option>
+                                                    <option value="2130">21:30</option>
+                                                    <option value="2145">21:45</option>
+                                                    <option value="2200">22:00</option>
+                                                    <option value="2215">22:15</option>
+                                                    <option value="2230">22:30</option>
+                                                    <option value="2245">22:45</option>
+                                                    <option value="2300">23:00</option>
+                                                    <option value="2315">23:15</option>
+                                                    <option value="2330">23:30</option>
+                                                    <option value="2345">23:45</option>
+                                                    <option value="0000">00:00</option>
+                                                </select>
+                                            </div>
                                             <div class="hr-line-dashed col-xs-12"></div>
 
                                             <div class="alert alert-danger dangerstyle" id="alert">
@@ -667,7 +684,24 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             </div>
         </div>
     </div>
-    <!-- FIN MODAL VACIO -->
+    <!-- FIN MODAL VACIO -->sapi_windows_cp_conv
+    <div class="modal fade" id="modalEquiposOcupados" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pedidos donde se ocupa el equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="pedidoconequipo">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <!-- Mainly scripts -->
@@ -705,20 +739,20 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
     <script src="js/jquery.validate.js"></script>
     <script>
-        var idModulo = 0;
-        var ordenModulo = new Array();
+        let idModulo = 0;
+        let ordenModulo = new Array();
 
-        var idModAcyual = $("#cantidadModulos").val();
-        var idModulo = parseInt(idModAcyual);
-        var ordenActual = $("#ordenModulos").val();
+        let idModAcyual = $("#cantidadModulos").val();
+        idModulo = parseInt(idModAcyual);
+        let ordenActual = $("#ordenModulos").val();
 
-        var didision = ordenActual.split(",");
-        var ordenModulo = didision;
+        let didision = ordenActual.split(",");
+        ordenModulo = didision;
+
+        let response;
 
 
         $(document).ready(function() {
-
-
 
 
             $('.i-checks').iCheck({
@@ -726,18 +760,18 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 radioClass: 'iradio_square-green',
             });
 
-            var d = new Date();
-            var day = d.getDate();
+            let d = new Date();
+            let day = d.getDate();
 
             const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            var m = new Date();
-            var name = month[m.getMonth()];
+            let m = new Date();
+            let name = month[m.getMonth()];
 
-            var y = new Date();
-            var year = y.getFullYear();
+            let y = new Date();
+            let year = y.getFullYear();
 
-            var stardaten = day + "/" + name + "/" + year;
+            let stardaten = day + "/" + name + "/" + year;
 
 
             $('#data_1 .input-group.date').datepicker({
@@ -759,7 +793,7 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
             });
 
             $("#fechain").change(function() {
-                var idClase = $(this).val();
+                let idClase = $(this).val();
                 console.log(idClase);
                 $("#fechaout").val(idClase);
                 $('#data_2 .input-group.date').datepicker('setStartDate', idClase);
@@ -769,31 +803,62 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
         $('.clockpicker').clockpicker();
 
-        /* Pestañas */
-        var pesActiva = 1;
-        $(".pes").click(function() {
-            var idact = $(this).attr("id");
-            var divide = idact.split("-");
-            var idact2 = divide[1];
-            $("#p-" + pesActiva).removeClass("activa");
-            $("#p-" + idact2).addClass("activa");
+        let config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': {
+                allow_single_deselect: true
+            },
+            '.chosen-select-no-single': {
+                disable_search_threshold: 10
+            },
+            '.chosen-select-no-results': {
+                no_results_text: 'Oops, nothing found!'
+            }
 
-            $("#p" + pesActiva).hide();
-            $("#p" + idact2).show();
+        }
+        for (let selector in config) {
+            $(selector).chosen(config[selector]);
+        }
 
-            pesActiva = idact2;
+        /*------------------------------------------------------------------------------------------------------------------------------*/
 
-        });
-        /* Fin pestañas */
+        function obtenerFecha() {
 
-        /*$('#agregarmod').click(function() {
-            $("#equiposdisponibles").html("");
-            $('#modal').modal('show');
-        });*/
+            let infoFecha = {};
+
+            let fechain = $("#fechain").val();
+            let fechaout = $("#fechaout").val();
+            let horain = $('#horain option:selected').val();
+            let horaout = $('#horaout option:selected').val();
+
+            let arrayfechain = fechain.split("/");
+            let fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+
+            let arrayfechaout = fechaout.split("/");
+            let fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
+
+            let horainfin = horain;
+
+            let horaoutfin = horaout;
+
+            let fechasalida = fechainfin + horainfin;
+            let fecharegreso = fechaoutfin + horaoutfin;
+
+            infoFecha = {
+                "fechaSalida": fechain,
+                "horaSalida": horain,
+                "fechaRegereso": fechaout,
+                "horaRegerso": horaout,
+                "fechaSalidaCompleta": fechasalida,
+                "fechaRegresoCompleta": fecharegreso
+            }
+
+            return infoFecha;
+        }
 
         $('#agregarmod').click(function() {
 
-            var fechain = $("#fechain").val();
+            /*var fechain = $("#fechain").val();
             var fechaout = $("#fechaout").val();
             var horain = $('#horain option:selected').val();
             var horaout = $('#horaout option:selected').val();
@@ -810,7 +875,7 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
             var fechasalida = fechainfin + horainfin;
             var fecharegreso = fechaoutfin + horaoutfin;
-
+            
             if (fechain == "" || fechaout == "" || horain == "" || horaout == "") {
                 $('#modalError').modal('show');
             } else if (fechasalida >= fecharegreso) {
@@ -820,89 +885,29 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 $("#equiposdisponibles").html("");
                 $('#modal').modal('show');
             }
+            
+            */
+
+            let fechas = obtenerFecha();
+
+            if (fechas.fechaSalida == "" || fechas.fechaRegereso == "" || fechas.horaSalida == "" || fechas.horaRegerso == "") {
+                $('#modalError').modal('show');
+            } else if (fechas.fechaSalidaCompleta >= fechas.fechaRegresoCompleta) {
+                $('#modalError2').modal('show');
+            } else {
+                $("#clasef").val('0');
+                $("#subclase").html('<option value=""></option>');
+                $("#equiposdisponibles").html("");
+                $('#modal').modal('show');
+            }
+
+
 
         });
 
-        function addarMod(id, nombre) {
-
-
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
-
-            var idtemporal = $("#idtemporal").val();
-
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
-
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-
-
-            $.ajax({
-                    method: "POST",
-                    url: "insertEquipoPedido.php",
-                    data: {
-                        idtemporal: idtemporal,
-                        fechasalida: fechasalida,
-                        fecharegreso: fecharegreso,
-                        idequipo: id
-                    }
-                })
-                .done(function(data) {
-                    /*$("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    var cont = "<div class=\"claseequipo\" id=\"" + id + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + id + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";*/
-
-                    $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    var cont = "<div class=\"claseequipo\" id=\"" + data + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";
-
-                    $("#contenedor-modulos").append(cont);
-
-                    $("#e" + id).removeClass("claseequipo2").addClass("claseequipo2off");
-                    $("#e" + id + " .nombre").prop("onclick", null).off('click');
-                });
-
-
-
-        }
-
-        function borrarMod(id) {
-
-
-            /*var idactual = $("#id").val();
-            var idtemporal = $("#idtemporal").val();
-            var idRegistro = id;*/
-
-            var idtemporal = $("#idtemporal").val();
-            var idRegistro = id;
-
-            $.ajax({
-                    method: "POST",
-                    url: "deleteEquipoPedido.php",
-                    data: {
-                        idtemporal: idtemporal,
-                        idregistro: idRegistro
-                    }
-                })
-                .done(function(data) {
-                    $("#" + idRegistro).remove();
-                });
-
-
-        }
 
         $("#clasef").change(function() {
-            var idClase = $(this).val();
+            let idClase = $(this).val();
             $("#equiposdisponibles").html("");
             $.ajax({
                     method: "POST",
@@ -920,30 +925,12 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
 
             $("#equiposdisponibles").html("");
 
-            var idSubClase = $(this).val();
-            var fechain = $("#fechain").val();
-            var fechaout = $("#fechaout").val();
-            var horain = $("#horain").val();
-            var horaout = $("#horaout").val();
-            var idTemp = $("#idtemporal").val();
+            let idSubClase = $(this).val();
+            let idTemp = $("#idtemporal").val();
+            let modexist = $("#ordenModulos").val();
 
+            let fechas = obtenerFecha();
 
-            var arrayfechain = fechain.split("/");
-            var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
-
-            var arrayfechaout = fechaout.split("/");
-            var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-            var arrayhorain = horain.split(":");
-            var horainfin = arrayhorain[0] + arrayhorain[1];
-
-            var arrayhoraout = horaout.split(":");
-            var horaoutfin = arrayhoraout[0] + arrayhoraout[1];
-
-            var fechasalida = fechainfin + horainfin;
-            var fecharegreso = fechaoutfin + horaoutfin;
-
-            var modexist = $("#ordenModulos").val();
 
 
             $.ajax({
@@ -951,8 +938,8 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                     url: "armaComboPed02.php",
                     data: {
                         idSubClase: idSubClase,
-                        fechasalida: fechasalida,
-                        fecharegreso: fecharegreso,
+                        fechasalida: fechas.fechaSalidaCompleta,
+                        fecharegreso: fechas.fechaRegresoCompleta,
                         modexist: modexist,
                         idTemp: idTemp
                     }
@@ -963,31 +950,84 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 });
         });
 
-        var config = {
-            '.chosen-select': {},
-            '.chosen-select-deselect': {
-                allow_single_deselect: true
-            },
-            '.chosen-select-no-single': {
-                disable_search_threshold: 10
-            },
-            '.chosen-select-no-results': {
-                no_results_text: 'Oops, nothing found!'
-            }
+        function addarMod(id, nombre) {
+
+
+            let fechas = obtenerFecha();
+            let idtemporal = $("#idtemporal").val();
+
+
+            $.ajax({
+                    method: "POST",
+                    url: "insertEquipoPedido.php",
+                    data: {
+                        idtemporal: idtemporal,
+                        fechasalida: fechas.fechaSalidaCompleta,
+                        fecharegreso: fechas.fechaRegresoCompleta,
+                        idequipo: id
+                    }
+                })
+                .done(function(data) {
+                    $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
+                    let cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"check-btn\" onclick=\"revisarOcupacion(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-share-square-o\" aria-hidden=\"true\"></i></div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div> </div>";
+
+                    $("#contenedor-modulos").append(cont);
+
+                    $("#e" + id).removeClass("claseequipo2").addClass("claseequipo2off");
+                    $("#e" + id + " .nombre").prop("onclick", null).off('click');
+                });
+
+
 
         }
-        for (var selector in config) {
-            $(selector).chosen(config[selector]);
+
+        function borrarMod(idRegistro, idEquipo) {
+
+            let idtemporal = $("#idtemporal").val();
+            let idRegistroF = idRegistro;
+            let idEquipoF = idEquipo;
+
+            $.ajax({
+                    method: "POST",
+                    url: "deleteEquipoPedido.php",
+                    data: {
+                        idtemporal: idtemporal,
+                        idregistro: idRegistro
+                    }
+                })
+                .done(function(data) {
+                    $("#" + idRegistro).remove();
+                });
+
+
         }
+
+
+        function revisarOcupacion(idRegistro, idEquipo) {
+
+            let idEquipoF = idEquipo;
+
+            $.ajax({
+                    method: "POST",
+                    url: "validarEquiposOcupados.php",
+                    data: {
+                        idEquipoF: idEquipoF,
+                    }
+                })
+                .done(function(data) {
+                    $('#modalEquiposOcupados').modal('show');
+                    $("#pedidoconequipo").html("");
+                    $("#pedidoconequipo").append(data);
+                });
+        }
+
 
         $("#form1").validate({
             rules: {
                 nombre: "required",
                 materia: "required",
                 docente: "required",
-                //responsable: "required",
                 curso: "required",
-                //comision: "required",
                 fechain: "required",
                 horain: "required",
                 fechaout: "required",
@@ -998,35 +1038,17 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                 nombre: "Campo obligatorio",
                 materia: "Campo obligatorio",
                 docente: "Campo obligatorio",
-                //responsable: "Campo obligatorio",
                 curso: "Campo obligatorio",
-                //comision: "Campo obligatorio",
                 fechain: "Campo obligatorio",
                 horain: "Campo obligatorio",
                 fechaout: "Campo obligatorio",
                 horaout: "Campo obligatorio"
             },
             submitHandler: function(form) {
-                var fechain = $("#fechain").val();
-                var fechaout = $("#fechaout").val();
-                /*var horain = $("#horain").val();
-                var horaout = $("#horaout").val();*/
-                var horain = $('#horain option:selected').val();
-                var horaout = $('#horaout option:selected').val();
-                var idTemp = $("#idtemporal").val();
 
-                var arrayfechain = fechain.split("/");
-                var fechainfin = arrayfechain[2] + arrayfechain[1] + arrayfechain[0];
+                let idTemp = $("#idtemporal").val();
 
-                var arrayfechaout = fechaout.split("/");
-                var fechaoutfin = arrayfechaout[2] + arrayfechaout[1] + arrayfechaout[0];
-
-
-                var horainfin = horain;
-                var horaoutfin = horaout;
-
-                var fechasalida = fechainfin + horainfin;
-                var fecharegreso = fechaoutfin + horaoutfin;
+                let fechas = obtenerFecha();
 
                 $.ajax({
                         method: "POST",
@@ -1045,15 +1067,29 @@ while ($arrContenidoEq = $rsContEqip->fetch(PDO::FETCH_BOTH)) {
                                     url: "validarInsert.php",
                                     dataType: "json",
                                     data: {
-                                        fechasalida: fechasalida,
-                                        fecharegreso: fecharegreso,
+                                        fechasalida: fechas.fechaSalidaCompleta,
+                                        fecharegreso: fechas.fechaRegresoCompleta,
                                         idTemp: idTemp
                                     }
                                 })
                                 .done(function(data) {
                                     if (data.estado == 1) {
+
+                                        let arrays = data.identificadores;
+
+                                        console.log(arrays);
+
+                                        for (let index = 0; index < arrays.length; index++) {
+
+                                            $("#ef" + arrays[index]).addClass("alerta-epocupadounidad");
+                                            $("#ef" + arrays[index] + " div").eq(1).css("opacity", 1);
+
+                                        }
+
                                         $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
                                     } else {
+
+                                        //alert("Enviado");
                                         document.getElementById("form1").submit();
                                     }
 

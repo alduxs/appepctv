@@ -64,17 +64,6 @@ for ($i = 0; $i < count($equipo); $i++) {
                 }
             }
 
-            /*$fechainrange = in_range($fechasalida, $arrCont["pedidos_fechain"], $arrCont["pedidos_fechaout"]);
-            
-            if ($fechainrange) {
-                $equipo[$i]["estado"] = "1";
-            } else {
-                $fechaoutrange = in_range($fecharegreso, $arrCont["pedidos_fechain"], $arrCont["pedidos_fechaout"]);
-                
-                if ($fechaoutrange) {
-                    $equipo[$i]["estado"] = "1";
-                }
-            }*/
         }
     }
 }

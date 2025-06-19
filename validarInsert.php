@@ -22,6 +22,7 @@ $query = "SELECT *
 $rsCont = $objContenido->getAllContenido($link, $query);
 $intQtyRecords = $rsCont->rowCount();
 
+$estado = 0;
 
 if ($intQtyRecords > 0) {
     while ($arrCont = $rsCont->fetch(PDO::FETCH_BOTH)) {
@@ -33,9 +34,10 @@ if ($intQtyRecords > 0) {
         WHERE pe.pe_id_equipo =" . $arrCont["pe_id_equipo"] . " AND p.pedidos_estado < 3";
         $rsCont2 = $objContenido->getAllContenido($link, $query);
         $intQtyRecords2 = $rsCont2->rowCount();
-
+        
         if ($intQtyRecords2 > 0) {
-            $estado = 0;
+            
+            
             while ($arrCont2 = $rsCont2->fetch(PDO::FETCH_BOTH)) {
 
                 if ($arrCont2["pedidos_fechain"] < $fechasalida) {
@@ -73,13 +75,15 @@ if ($intQtyRecords > 0) {
                 }
                     */
             }
-            $response = ["estado" => $estado, "identificadores" => $ident];
-        } else {
+            //$response = ["estado" => $estado, "identificadores" => $ident];
+        } /*else {
             $response = ["estado" => 0, "identificadores" => $ident];
-        }
+        }*/
     }
-} else {
+} /*else {
     $response = ["estado" => 0, "identificadores" => $ident];
-}
+}*/
+
+$response = ["estado" => $estado, "identificadores" => $ident];
 
 echo json_encode($response);

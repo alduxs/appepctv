@@ -41,7 +41,7 @@ if ($intQtyRecords > 0) {
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/amsify.suggestags.css">
-    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link href="css/estilos.css?v=2" rel="stylesheet" type="text/css">
 
     <style>
         .claseequipo {
@@ -69,6 +69,22 @@ if ($intQtyRecords > 0) {
             color: #FFFFFF;
             padding: 5px 8px;
             cursor: pointer;
+        }
+
+        .check-btn {
+            float: right;
+            border-radius: 3px;
+            background-color:red;
+            border-color: red;
+            color: #FFFFFF;
+            padding: 5px 8px;
+            cursor: pointer;
+            margin-left: 6px;
+            opacity: 0;
+        }
+
+        .alerta-epocupadounidad {
+            border: 1px solid red;
         }
     </style>
 
@@ -179,7 +195,7 @@ if ($intQtyRecords > 0) {
                                                 $rsPost = $objContenido->getAllContenido($link, $queryPost);
                                                 ?>
                                                 <?php while ($arrPost = $rsPost->fetch(PDO::FETCH_BOTH)) { ?>
-                                                    <?php var_dump($arrPost); ?>
+                                                    <?php //var_dump($arrPost); ?>
                                                     <option value="<?php echo $arrPost["profesores_id"] ?>"><?php echo $arrPost["profesores_apellido"] . " " . $arrPost["profesores_name"]; ?></option>
                                                 <?php } ?>
                                             </select>
@@ -485,9 +501,6 @@ if ($intQtyRecords > 0) {
 
 
 
-
-
-
                                 </form>
 
 
@@ -496,7 +509,6 @@ if ($intQtyRecords > 0) {
                         </div>
                     </div>
                 </div>
-
 
 
 
@@ -625,6 +637,24 @@ if ($intQtyRecords > 0) {
         </div>
     </div>
 
+    <div class="modal fade" id="modalEquiposOcupados" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pedidos donde se ocupa el equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <div id="pedidoconequipo">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Mainly scripts -->
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -662,8 +692,8 @@ if ($intQtyRecords > 0) {
 
 
     <script>
-        var idModulo = 0;
-        var ordenModulo = new Array();
+        let idModulo = 0;
+        let ordenModulo = new Array();
         $(document).ready(function() {
 
             $('.i-checks').iCheck({
@@ -671,18 +701,18 @@ if ($intQtyRecords > 0) {
                 radioClass: 'iradio_square-green',
             });
 
-            var d = new Date();
-            var day = d.getDate();
+            let d = new Date();
+            let day = d.getDate();
 
             const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            var m = new Date();
-            var name = month[m.getMonth()];
+            let m = new Date();
+            let name = month[m.getMonth()];
 
-            var y = new Date();
-            var year = y.getFullYear();
+            let y = new Date();
+            let year = y.getFullYear();
 
-            var stardaten = day + "/" + name + "/" + year;
+            let stardaten = day + "/" + name + "/" + year;
 
 
             $('#data_1 .input-group.date').datepicker({
@@ -704,7 +734,7 @@ if ($intQtyRecords > 0) {
             });
 
             $("#fechain").change(function() {
-                var idClase = $(this).val();
+                let idClase = $(this).val();
                 //.log(idClase);
                 $("#fechaout").val(idClase);
                 $('#data_2 .input-group.date').datepicker('setStartDate', idClase);
@@ -714,7 +744,7 @@ if ($intQtyRecords > 0) {
 
         $('.clockpicker').clockpicker();
 
-        var config = {
+        let config = {
             '.chosen-select': {},
             '.chosen-select-deselect': {
                 allow_single_deselect: true
@@ -727,30 +757,14 @@ if ($intQtyRecords > 0) {
             }
 
         }
-        for (var selector in config) {
+        for (let selector in config) {
             $(selector).chosen(config[selector]);
         }
 
-        /* Pestañas */
-       /* var pesActiva = 1;
-        $(".pes").click(function() {
-            var idact = $(this).attr("id");
-            var divide = idact.split("-");
-            var idact2 = divide[1];
-            $("#p-" + pesActiva).removeClass("activa");
-            $("#p-" + idact2).addClass("activa");
-
-            $("#p" + pesActiva).hide();
-            $("#p" + idact2).show();
-
-            pesActiva = idact2;
-
-        });*/
-        /* Fin pestañas */
 
         /* ------------------------------------------------------------------------------------- Procesos */
 
-        function obtenerFecha(){
+        function obtenerFecha() {
 
             let infoFecha = {};
 
@@ -773,13 +787,13 @@ if ($intQtyRecords > 0) {
             let fecharegreso = fechaoutfin + horaoutfin;
 
             infoFecha = {
-                "fechaSalida":fechain,
-                "horaSalida":horain,
-                "fechaRegereso":fechaout,
-                "horaRegerso":horaout,
-                "fechaSalidaCompleta":fechasalida,
-                "fechaRegresoCompleta":fecharegreso
-            } 
+                "fechaSalida": fechain,
+                "horaSalida": horain,
+                "fechaRegereso": fechaout,
+                "horaRegerso": horaout,
+                "fechaSalidaCompleta": fechasalida,
+                "fechaRegresoCompleta": fecharegreso
+            }
 
             return infoFecha;
         }
@@ -791,7 +805,7 @@ if ($intQtyRecords > 0) {
 
             if (fechas.fechaSalida == "" || fechas.fechaRegereso == "" || fechas.horaSalida == "" || fechas.horaRegerso == "") {
                 $('#modalError').modal('show');
-            } else if(fechas.fechaSalidaCompleta >= fechas.fechaRegresoCompleta){ 
+            } else if (fechas.fechaSalidaCompleta >= fechas.fechaRegresoCompleta) {
                 $('#modalError2').modal('show');
             } else {
                 $("#clasef").val('0');
@@ -799,10 +813,10 @@ if ($intQtyRecords > 0) {
                 $("#equiposdisponibles").html("");
                 $('#modal').modal('show');
             }
-            
+
         });
 
-         $("#clasef").change(function() {
+        $("#clasef").change(function() {
             let idClase = $(this).val();
             $("#equiposdisponibles").html("");
             $.ajax({
@@ -846,7 +860,7 @@ if ($intQtyRecords > 0) {
         function addarMod(id, nombre) {
 
 
-            var idtemporal = $("#idtemporal").val();
+            let idtemporal = $("#idtemporal").val();
 
             let fechas = obtenerFecha();
 
@@ -865,7 +879,7 @@ if ($intQtyRecords > 0) {
                 .done(function(data) {
 
                     $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    var cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + ","+ data.idEquipo+")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div></div>";
+                    let cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"check-btn\" onclick=\"revisarOcupacion(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-share-square-o\" aria-hidden=\"true\"></i></div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div> </div>";
 
                     $("#contenedor-modulos").append(cont);
 
@@ -875,7 +889,7 @@ if ($intQtyRecords > 0) {
 
         }
 
-        function borrarMod(idRegistro,idEquipo) {
+        function borrarMod(idRegistro, idEquipo) {
 
             let idtemporal = $("#idtemporal").val();
             let idRegistroF = idRegistro;
@@ -884,7 +898,7 @@ if ($intQtyRecords > 0) {
             $.ajax({
                     method: "POST",
                     url: "deleteEquipoPedido.php",
-                    
+
                     data: {
                         idtemporal: idtemporal,
                         idregistro: idRegistroF
@@ -895,7 +909,25 @@ if ($intQtyRecords > 0) {
                 });
         }
 
-       
+        function revisarOcupacion(idRegistro, idEquipo) {
+
+            let idEquipoF = idEquipo;
+
+            $.ajax({
+                    method: "POST",
+                    url: "validarEquiposOcupados.php",
+                    data: {
+                        idEquipoF: idEquipoF,
+                    }
+                })
+                .done(function(data) {
+                    $('#modalEquiposOcupados').modal('show');
+                    $("#pedidoconequipo").html("");
+                    $("#pedidoconequipo").append(data);
+                });
+        }
+
+
         $("#form1").validate({
             rules: {
                 nombre: "required",
@@ -947,18 +979,25 @@ if ($intQtyRecords > 0) {
                                     }
                                 })
                                 .done(function(data) {
+
+
                                     if (data.estado == 1) {
 
-                                        var arrays = data.identificadores;
+                                        let arrays = data.identificadores;
+
+                                        console.log(arrays);
 
                                         for (let index = 0; index < arrays.length; index++) {
 
-                                            $("#ef"+arrays[index]).addClass("alerta-epocupadounidad");
+                                            $("#ef" + arrays[index]).addClass("alerta-epocupadounidad");
+                                            $("#ef" + arrays[index] + " div").eq(1).css("opacity",1);
 
                                         }
 
                                         $("#alert").html("Hay equipos ocupados en la fecha.").removeClass("dangerstyle").addClass("dangerstyleview");
                                     } else {
+
+                                        //alert("Enviado");
                                         document.getElementById("form1").submit();
                                     }
 
