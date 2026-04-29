@@ -5,7 +5,7 @@ define ('_CONST_PAGINADO_H_', "6");
 
 $host = $_SERVER["HTTP_HOST"];
 
-if ($host == "localhost" || $host == "192.168.100.16"):
+if ($host == "localhost" || $host == "192.168.100.106"):
 	$urlweb = "http://".$host."/appepctv/";
 	$urladmin = "http://".$host."/appepctv/admin/";
 else:

@@ -588,7 +588,7 @@ $intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
                                                 <div class="claseequipo" id="ef<?php echo $equipos[$i]["id"]; ?>">
                                                     <div class="nombre"><?php echo $equipos[$i]["nombre"]; ?></div>
                                                     <div class="check-btn" onclick="revisarOcupacion(<?php echo $equipos[$i]["idregistro"]; ?>,<?php echo $equipos[$i]["id"]; ?>)"><i class="fa fa-share-square-o" aria-hidden="true"></i></div>
-                                                    <div class="borrar-btn" onclick="borrarMod(<?php echo $equipos[$i]["idregistro"]; ?>)"><i class="fa fa-remove" aria-hidden="true"></i></div>
+                                                    <div class="borrar-btn" onclick="borrarMod(<?php echo $equipos[$i]["idregistro"]; ?>,<?php echo $equipos[$i]["id"]; ?>)"><i class="fa fa-remove" aria-hidden="true"></i></div>
                                                 </div>
                                             <?php } ?>
 
@@ -1093,8 +1093,8 @@ $intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
                         idregistro: idRegistroF
                     }
                 })
-                .done(function(data) {
-                    $("#" + idRegistro).remove();
+               .done(function(data) {
+                    $("#ef" + idEquipoF).remove();
                 });
 
         }
@@ -1102,12 +1102,14 @@ $intIdRegistroDel1 = $objContenido->getAllContenido($link, $query);
         function revisarOcupacion(idRegistro, idEquipo) {
 
             let idEquipoF = idEquipo;
+            let idtemporal = $("#idtemporal").val();
 
             $.ajax({
                     method: "POST",
                     url: "validarEquiposOcupados.php",
                     data: {
                         idEquipoF: idEquipoF,
+                        idtemporal: idtemporal,
                     }
                 })
                 .done(function(data) {

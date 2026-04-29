@@ -912,12 +912,14 @@ if ($intQtyRecords > 0) {
         function revisarOcupacion(idRegistro, idEquipo) {
 
             let idEquipoF = idEquipo;
+            let idtemporal = $("#idtemporal").val();
 
             $.ajax({
                     method: "POST",
                     url: "validarEquiposOcupados.php",
                     data: {
                         idEquipoF: idEquipoF,
+                        idtemporal: idtemporal,
                     }
                 })
                 .done(function(data) {

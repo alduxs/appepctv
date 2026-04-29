@@ -10,6 +10,7 @@ $link = Conectarse();
 $objContenido   = new General();
 //
 $idEquipo = $_POST["idEquipoF"];
+$idTemp = $_POST["idtemporal"];
 //
 $fechahoy = date("Ymdhis");
 //
@@ -17,6 +18,7 @@ $query = "SELECT *
         FROM pedidos_equipos pe
         LEFT JOIN pedidos p ON p.pedidos_id = pe.pe_id_pedido
         WHERE pe_id_equipo = " . $idEquipo . " AND (p.pedidos_estado = 1 || p.pedidos_estado = 2) AND  p.pedidos_fechaout >= '" . $fechahoy . "'
+        AND pe_id_pedido_temp != '" . $idTemp . "'
         ORDER BY p.pedidos_estado DESC, p.pedidos_fechain DESC";
 $rsCont = $objContenido->getAllContenido($link, $query);
 
