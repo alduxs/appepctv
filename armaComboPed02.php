@@ -24,7 +24,8 @@ $equiposdisponible = array();
 //
 $query = "SELECT *
 FROM equipos
-WHERE eq_subclase =" . $idSubClase . " AND eq_enservicio = 1";
+WHERE eq_subclase =" . $idSubClase . " AND eq_enservicio = 1
+ORDER BY eq_nombre ASC, eq_id ASC";
 $rsCont = $objContenido->getAllContenido($link, $query);
 
 while ($arrCont = $rsCont->fetch(PDO::FETCH_BOTH)) {
