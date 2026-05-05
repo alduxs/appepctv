@@ -877,9 +877,20 @@ if ($intQtyRecords > 0) {
                     }
                 })
                 .done(function(data) {
+                
+                    let cont = "";
+
+                    $("#contenedor-modulos").html("");
 
                     $("#alert").html("").removeClass("dangerstyleview").addClass("dangerstyle");
-                    let cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"check-btn\" onclick=\"revisarOcupacion(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-share-square-o\" aria-hidden=\"true\"></i></div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div> </div>";
+
+                    for (let index = 0; index < data.length; index++) {
+                        const element = data[index];
+                        cont += "<div class=\"claseequipo\" id=\"ef" + element.id + "\"><div class=\"nombre\">" + element.nombre + "</div><div class=\"check-btn\" onclick=\"revisarOcupacion(" + element.idregistro + "," + element.id + ")\"><i class=\"fa fa-share-square-o\" aria-hidden=\"true\"></i></div><div class=\"borrar-btn\" onclick=\"borrarMod(" + element.idregistro + "," + element.id + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div> </div>";
+                    }
+                    
+                    /*
+                    let cont = "<div class=\"claseequipo\" id=\"ef" + data.idEquipo + "\"><div class=\"nombre\">" + nombre + "</div><div class=\"check-btn\" onclick=\"revisarOcupacion(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-share-square-o\" aria-hidden=\"true\"></i></div><div class=\"borrar-btn\" onclick=\"borrarMod(" + data.idRegistro + "," + data.idEquipo + ")\"><i class=\"fa fa-remove\" aria-hidden=\"true\"></i></div> </div>";*/
 
                     $("#contenedor-modulos").append(cont);
 
